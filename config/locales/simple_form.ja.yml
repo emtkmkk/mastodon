@@ -79,7 +79,7 @@ ja:
         closed_registrations_message: アカウント作成を停止している時に表示されます
         content_cache_retention_period: 正の値に設定されている場合、他のサーバーの投稿は指定された日数の後に削除されます。元に戻せません。
         custom_css: ウェブ版のMastodonでカスタムスタイルを適用できます。
-        mascot: 上級者向けWebインターフェースのイラストを上書きします。
+        mascot: なんちゃらDeckみたいなWebインターフェースのイラストを上書きします。
         media_cache_retention_period: 正の値に設定されている場合、ダウンロードされたメディアファイルは指定された日数の後に削除され、リクエストに応じて再ダウンロードされます。
         profile_directory: プロフィールディレクトリには、掲載するよう設定したすべてのユーザーが一覧表示されます。
         require_invite_text: アカウント登録が承認制の場合、「意気込みをお聞かせください」のテキストの入力を必須にする
@@ -187,7 +187,7 @@ ja:
         otp_attempt: 二要素認証コード
         password: パスワード
         phrase: キーワードまたはフレーズ
-        setting_advanced_layout: 上級者向けUIを有効にする
+        setting_advanced_layout: なんちゃらDeckみたいなUIを有効にする
         setting_aggregate_reblogs: ブーストをまとめる
         setting_always_send_emails: 常にメール通知を送信する
         setting_auto_play_gif: アニメーションGIFを自動再生する
@@ -259,7 +259,7 @@ ja:
       invite:
         comment: コメント
       invite_request:
-        text: 意気込みをお聞かせください
+        text: あなたが何者なのか教えてください
       ip_block:
         comment: コメント
         ip: IP
@@ -271,7 +271,7 @@ ja:
       notification_emails:
         appeal: モデレーターの判断に異議申し立てが行われた時
         digest: タイムラインからピックアップしてメールで通知する
-        favourite: お気に入り登録された時
+        favourite: ふぁぼられた時
         follow: フォローされた時
         follow_request: フォローリクエストを受けた時
         mention: 返信が来た時
