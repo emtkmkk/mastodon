@@ -41,7 +41,7 @@ class ManifestSerializer < ActiveModel::Serializer
   end
 
   def theme_color
-    '#f8bcba'
+    '#380706'
   end
 
   def background_color
@@ -77,11 +77,11 @@ class ManifestSerializer < ActiveModel::Serializer
   def shortcuts
     [
       {
-        name: 'Compose new post',
+        name: 'トゥートする',
         url: '/publish',
       },
       {
-        name: 'Notifications',
+        name: '通知を表示',
         url: '/notifications',
       },
     ]
