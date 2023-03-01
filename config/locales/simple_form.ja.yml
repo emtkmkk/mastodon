@@ -80,7 +80,7 @@ ja:
         closed_registrations_message: アカウント作成を停止している時に表示されます
         content_cache_retention_period: 正の値に設定されている場合、他のサーバーの投稿は指定された日数の後に削除されます。元に戻せません。
         custom_css: ウェブ版のMastodonでカスタムスタイルを適用できます。
-        mascot: 上級者向けWebインターフェースのイラストを上書きします。
+        mascot: なんちゃらDeckみたいなWebインターフェースのイラストを上書きします。
         media_cache_retention_period: 正の値に設定されている場合、ダウンロードされたメディアファイルは指定された日数の後に削除され、リクエストに応じて再ダウンロードされます。
         peers_api_enabled: このサーバーが Fediverse で遭遇したドメイン名のリストです。このサーバーが知っているだけで、特定のサーバーと連合しているかのデータは含まれません。これは一般的に Fediverse に関する統計情報を収集するサービスによって使用されます。
         profile_directory: ディレクトリには、掲載する設定をしたすべてのユーザーが一覧表示されます。
@@ -191,7 +191,7 @@ ja:
         otp_attempt: 二要素認証コード
         password: パスワード
         phrase: キーワードまたはフレーズ
-        setting_advanced_layout: 上級者向けUIを有効にする
+        setting_advanced_layout: なんちゃらDeckみたいなUIを有効にする
         setting_aggregate_reblogs: ブーストをまとめる
         setting_always_send_emails: 常にメール通知を送信する
         setting_auto_play_gif: アニメーションGIFを自動再生する
@@ -267,7 +267,7 @@ ja:
       invite:
         comment: コメント
       invite_request:
-        text: 意気込みをお聞かせください
+        text: あなたが何者なのか教えてください
       ip_block:
         comment: コメント
         ip: IP
@@ -279,7 +279,7 @@ ja:
       notification_emails:
         appeal: モデレーターの判断に異議申し立てが行われた時
         digest: タイムラインからピックアップしてメールで通知する
-        favourite: お気に入り登録された時
+        favourite: ふぁぼられた時
         follow: フォローされた時
         follow_request: フォローリクエストを受けた時
         mention: 返信が来た時
