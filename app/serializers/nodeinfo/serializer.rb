@@ -10,7 +10,7 @@ class NodeInfo::Serializer < ActiveModel::Serializer
   end
 
   def software
-    { name: 'mastodon', version: Mastodon::Version.to_s }
+    { name: 'mastodon', version: Mastodon::Version.to_s + '+' }
   end
 
   def services
@@ -39,6 +39,8 @@ class NodeInfo::Serializer < ActiveModel::Serializer
 
   def metadata
     {
+      nodeName: 'もこもこ港【リアクション受け取れます！】',
+      nodeDescription: "Misskeyの皆さんこんにちは。\nこんな場所を見てくれてありがとうございます。\nリアクションを受け取る機能が入っているのでドシドシリアクションしてくれると嬉しいです。\nサーバー登録は承認制なのでサーバー内の誰かとよく話す人のみどうぞ。",
       disableGlobalTimeline: false,
       disableLocalTimeline: false,
       disableRegistration: false,
@@ -49,7 +51,7 @@ class NodeInfo::Serializer < ActiveModel::Serializer
       langs: [],
       maintainer: {
         email: 'mkmk.hbnet@gmail.com',
-        name: 'Emtk Mkk',
+        name: 'たこ @emtk',
       },
       maxNoteTextLength: 500,
       themeColor: '#f8bcba',
