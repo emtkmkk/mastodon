@@ -21,6 +21,7 @@ const messages = defineMessages({
   direct: { id: 'navigation_bar.direct', defaultMessage: 'Direct messages' },
   favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' },
   bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
+  reactions: { id: 'navigation_bar.reactions', defaultMessage: 'Reacted posts' },
   lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
   followsAndFollowers: { id: 'navigation_bar.follows_and_followers', defaultMessage: 'Follows and followers' },
@@ -84,6 +85,7 @@ class NavigationPanel extends React.Component {
             <ColumnLink transparent to='/conversations' icon='at' text={intl.formatMessage(messages.direct)} />
             <ColumnLink transparent to='/favourites' icon='star' text={intl.formatMessage(messages.favourites)} />
             <ColumnLink transparent to='/bookmarks' icon='bookmark' text={intl.formatMessage(messages.bookmarks)} />
+            <ColumnLink transparent to='/reactions' icon='smile-o' text={intl.formatMessage(messages.reactions)} />
             <ColumnLink transparent to='/lists' icon='list-ul' text={intl.formatMessage(messages.lists)} />
 
             <ListPanel />
