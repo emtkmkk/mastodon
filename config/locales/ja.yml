@@ -72,7 +72,7 @@ ja:
       follows: フォロー数
       header: ヘッダー
       inbox_url: Inbox URL
-      invite_request_text: 意気込み
+      invite_request_text: 招待時に入力されたテキスト
       invited_by: 招待した人
       ip: IP
       joined: 登録日
@@ -751,7 +751,7 @@ ja:
         remove_from_report: 通報から削除
         report: 通報
       deleted: 削除済み
-      favourites: お気に入り
+      favourites: ふぁぼ
       history: 更新履歴
       in_reply_to: 返信先
       language: 言語
@@ -823,13 +823,13 @@ ja:
       statuses:
         allow: 掲載を許可
         allow_account: 投稿者を許可
-        description_html: これらは、このサーバーが知っている、たくさんシェアされ、お気に入り登録されている投稿です。新しいユーザーや久しぶりにアクセスするユーザーがフォローする人を探すのに役立ちます。あなたが投稿者を承認し、投稿者が許可するまで、表示されることはありません。また、個別の投稿を許可または拒否することもできます。
+        description_html: これらは、このサーバーが知っている、たくさんシェアされ、ふぁぼられている投稿です。新しいユーザーや久しぶりにアクセスするユーザーがフォローする人を探すのに役立ちます。あなたが投稿者を承認し、投稿者が許可するまで、表示されることはありません。また、個別の投稿を許可または拒否することもできます。
         disallow: 掲載を拒否
         disallow_account: 投稿者を拒否
         no_status_selected: 何も選択されていないため、変更されていません
         not_discoverable: 投稿者は発見可能であることに同意していません
         shared_by:
-          other: "%{friendly_count} 回の共有、お気に入り"
+          other: "%{friendly_count} 回の共有、ふぁぼ"
         title: トレンド投稿
       tags:
         current_score: 現在のスコア %{score}
@@ -919,11 +919,11 @@ ja:
     hint_html: 他のアカウントからこのアカウントにフォロワーを引き継いで引っ越したい場合、ここでエイリアスを作成しておく必要があります。エイリアス自体は<strong>無害で、取り消す</strong>ことができます。<strong>引っ越しは以前のアカウント側から開始する必要があります</strong>。
     remove: エイリアスを削除
   appearance:
-    advanced_web_interface: 上級者向けUI
-    advanced_web_interface_hint: ディスプレイを幅いっぱいまで活用したい場合、上級者向け UI をおすすめします。ホーム、通知、連合タイムライン、更にはリストやハッシュタグなど、様々な異なるカラムから望む限りの情報を一度に受け取れるような設定が可能になります。
+    advanced_web_interface: なんちゃらDeckみたいなUI
+    advanced_web_interface_hint: ディスプレイを幅いっぱいまで活用したい場合、なんちゃらDeckみたいな UI に変更することをおすすめします。ホーム、通知、連合タイムライン、リストやハッシュタグなど、異なるカラムを同時に閲覧することが可能になります。
     animations_and_accessibility: アニメーションとアクセシビリティー
     confirmation_dialogs: 確認ダイアログ
-    discovery: 見つける
+    discovery: ディスカバリー
     localization:
       body: Mastodonは有志によって翻訳されています。
       guide_link: https://ja.crowdin.com/project/mastodon
@@ -1290,9 +1290,9 @@ ja:
       sign_up:
         subject: "%{name}さんがサインアップしました"
     favourite:
-      body: "%{name}さんにお気に入り登録された、あなたの投稿があります:"
-      subject: "%{name}さんにお気に入りに登録されました"
-      title: 新たなお気に入り登録
+      body: "%{name}さんにふぁぼられた、あなたの投稿:"
+      subject: "%{name}さんにふぁぼられました"
+      title: 新たなふぁぼ
     follow:
       body: "%{name}さんにフォローされています！"
       subject: "%{name}さんにフォローされています"
@@ -1314,7 +1314,7 @@ ja:
       subject: "%{name}さんにブーストされました"
       title: 新たなブースト
     status:
-      subject: "%{name}さんが投稿しました"
+      subject: "%{name}さんがトゥートしました"
     update:
       subject: "%{name}さんが投稿を更新しました"
   notifications:
@@ -1502,11 +1502,11 @@ ja:
     sign_in_to_participate: ログインして会話に参加
     title: '%{name}: "%{quote}"'
     visibilities:
-      direct: ダイレクト
-      private: フォロワー限定
+      direct: DM
+      private: 非公開
       private_long: フォロワーにのみ表示されます
       public: 公開
-      public_long: 誰でも見ることができ、かつ公開タイムラインに表示されます
+      public_long: 誰でも見ることができ、公開タイムラインに表示されます
       unlisted: 未収載
       unlisted_long: 誰でも見ることができますが、公開タイムラインには表示されません
   statuses_cleanup:
@@ -1517,7 +1517,7 @@ ja:
     ignore_favs: 設定しない
     ignore_reblogs: 設定しない
     interaction_exceptions: インタラクションに基づく例外
-    interaction_exceptions_explanation: お気に入りやブーストの基準値を一度超えてしまった投稿は、基準値を下回った後であっても、削除される保証はありません。
+    interaction_exceptions_explanation: ふぁぼやブーストの基準値を一度超えてしまった投稿は、基準値を下回った後であっても、削除される保証はありません。
     keep_direct: ダイレクトメッセージを保持
     keep_direct_hint: ダイレクトメッセージを削除せずに残します
     keep_media: メディア付きの投稿を保持
@@ -1528,8 +1528,8 @@ ja:
     keep_polls_hint: アンケート付きの投稿を削除せずに残します
     keep_self_bookmark: ブックマークした投稿を保持
     keep_self_bookmark_hint: 自分自身でブックマークした投稿を削除せずに残します
-    keep_self_fav: お気に入りに登録した投稿を保持
-    keep_self_fav_hint: 自分自身でお気に入りに登録した投稿を削除せずに残します
+    keep_self_fav: ふぁぼった投稿を保持
+    keep_self_fav_hint: 自分自身でふぁぼった投稿を削除せずに残します
     min_age:
       '1209600': 2週間
       '15778476': 半年
@@ -1540,8 +1540,8 @@ ja:
       '63113904': 2年
       '7889238': 3ヶ月
     min_age_label: 投稿を保持する期間
-    min_favs: お気に入りの基準値
-    min_favs_hint: この数以上、お気に入りされた投稿を削除せずに残します。空白にしておくと、お気に入りに登録された数に関わらず投稿を削除します。
+    min_favs: ふぁぼ数の基準値
+    min_favs_hint: この数以上、ふぁぼられた投稿を削除せずに残します。空白にしておくと、ふぁぼられた数に関わらず投稿を削除します。
     min_reblogs: ブーストの基準値
     min_reblogs_hint: この数以上、ブーストされた投稿を削除せずに残します。空白にしておくと、ブーストされた数に関わらず投稿を削除します。
   stream_entries:
@@ -1636,7 +1636,7 @@ ja:
         新しいフォロワーからフォローリクエストを承認する前に、オプトインで確認できます。
       explanation: 始めるにあたってのアドバイスです
       final_action: 始めましょう
-      final_step: 'さあ、始めましょう！ たとえフォロワーがまだいなくても、あなたの公開した投稿はローカルタイムラインやハッシュタグなどを通じて誰かの目にとまるはずです。自己紹介をしたいときには #introductions ハッシュタグが便利かもしれません。'
+      final_step: 'さあ、始めましょう！ たとえフォロワーがまだいなくても、あなたの公開した投稿はローカルタイムラインやハッシュタグなどを通じて誰かの目にとまるはずです。自己紹介をしたいときには #はじめまして ハッシュタグが便利かもしれません。'
       full_handle: あなたの正式なユーザーID
       full_handle_hint: 別のサーバーの友達とフォローやメッセージをやり取りする際には、これを伝えることになります。
       subject: Mastodonへようこそ

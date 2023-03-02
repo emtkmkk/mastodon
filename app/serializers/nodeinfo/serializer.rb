@@ -38,7 +38,22 @@ class NodeInfo::Serializer < ActiveModel::Serializer
   end
 
   def metadata
-    {}
+    {
+      disableGlobalTimeline: false,
+      disableLocalTimeline: false,
+      disableRegistration: false,
+      emailRequiredForSignup: true,
+      enableEmail: true,
+      enableHcaptcha: false,
+      enableRecaptcha: false,
+      langs: [],
+      maintainer: {
+        email: 'mkmk.hbnet@gmail.com',
+        name: 'Emtk Mkk',
+      },
+      maxNoteTextLength: 500,
+      themeColor: '#f8bcba',
+    }
   end
 
   private
