@@ -33,6 +33,13 @@ const dateFormatOptions = {
 const shortDateFormatOptions = {
   month: 'short',
   day: 'numeric',
+  hour: 'numeric',
+  minute: '2-digit',
+};
+
+const shortTimeFormatOptions = {
+  hour: 'numeric',
+  minute: '2-digit',
 };
 
 const SECOND = 1000;
@@ -80,13 +87,13 @@ export const timeAgoString = (intl, date, now, year, timeGiven, short) => {
     relativeTime = intl.formatMessage(messages.today);
   } else if (delta < 10 * SECOND) {
     relativeTime = intl.formatMessage(short ? messages.just_now : messages.just_now_full);
-  } else if (delta < 7 * DAY) {
+  } else if (delta < 1 * DAY) {
     if (delta < MINUTE) {
       relativeTime = intl.formatMessage(short ? messages.seconds : messages.seconds_full, { number: Math.floor(delta / SECOND) });
     } else if (delta < HOUR) {
       relativeTime = intl.formatMessage(short ? messages.minutes : messages.minutes_full, { number: Math.floor(delta / MINUTE) });
     } else if (delta < DAY) {
-      relativeTime = intl.formatMessage(short ? messages.hours : messages.hours_full, { number: Math.floor(delta / HOUR) });
+      relativeTime = intl.formatDate(date, shortTimeFormatOptions);
     } else {
       relativeTime = intl.formatMessage(short ? messages.days : messages.days_full, { number: Math.floor(delta / DAY) });
     }
