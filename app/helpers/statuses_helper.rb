@@ -97,11 +97,11 @@ module StatusesHelper
     when 'public'
       fa_icon 'globe fw'
     when 'unlisted'
-      fa_icon 'unlock fw'
+      fa_icon 'home fw'
     when 'private'
       fa_icon 'lock fw'
     when 'direct'
-      fa_icon 'at fw'
+      fa_icon 'envelope fw'
     end
   end
 

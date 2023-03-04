@@ -11,10 +11,10 @@ import { injectIntl, defineMessages } from 'react-intl';
 import Icon from 'mastodon/components/icon';
 
 const messages = defineMessages({
-  public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },
-  unlisted_short: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
-  private_short: { id: 'privacy.private.short', defaultMessage: 'Followers-only' },
-  direct_short: { id: 'privacy.direct.short', defaultMessage: 'Mentioned people only' },
+  public_mouseover: { id: 'privacy.public.mouseover', defaultMessage: 'Public' },
+  unlisted_mouseover: { id: 'privacy.unlisted.mouseover', defaultMessage: 'Unlisted' },
+  private_mouseover: { id: 'privacy.private.mouseover', defaultMessage: 'Followers-only' },
+  direct_mouseover: { id: 'privacy.direct.mouseover', defaultMessage: 'Mentioned people only' },
 });
 
 export default @injectIntl
@@ -41,10 +41,10 @@ class StatusCheckBox extends React.PureComponent {
     }
 
     const visibilityIconInfo = {
-      'public': { icon: 'globe', text: intl.formatMessage(messages.public_short) },
-      'unlisted': { icon: 'unlock', text: intl.formatMessage(messages.unlisted_short) },
-      'private': { icon: 'lock', text: intl.formatMessage(messages.private_short) },
-      'direct': { icon: 'at', text: intl.formatMessage(messages.direct_short) },
+      'public': { icon: 'globe', text: intl.formatMessage(messages.public_mouseover) },
+      'unlisted': { icon: 'home', text: intl.formatMessage(messages.unlisted_mouseover) },
+      'private': { icon: 'lock', text: intl.formatMessage(messages.private_mouseover) },
+      'direct': { icon: 'envelope', text: intl.formatMessage(messages.direct_mouseover) },
     };
 
     const visibilityIcon = visibilityIconInfo[status.get('visibility')];
