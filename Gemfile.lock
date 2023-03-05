@@ -259,10 +259,10 @@ GEM
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
       rake
-    fog-core (2.1.0)
+    fog-core (2.3.0)
       builder
-      excon (~> 0.58)
-      formatador (~> 0.2)
+      excon (~> 0.71)
+      formatador (>= 0.2, < 2.0)
       mime-types
     fog-json (1.2.0)
       fog-core
@@ -270,7 +270,7 @@ GEM
     fog-openstack (1.1.0)
       fog-core (~> 2.1)
       fog-json (>= 1.0)
-    formatador (0.3.0)
+    formatador (1.1.0)
     fugit (1.8.1)
       et-orbi (~> 1, >= 1.2.7)
       raabro (~> 1.4)
