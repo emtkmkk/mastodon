@@ -77,7 +77,7 @@ gem 'redcarpet', '~> 3.6'
 gem 'redis', '~> 5.0', require: ['redis', 'redis/connection/hiredis']
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
 gem 'rqrcode', '~> 2.1'
-gem 'ruby-progressbar', '~> 1.12'
+gem 'ruby-progressbar', '~> 1.13'
 gem 'sanitize', '~> 6.0'
 gem 'scenic', '~> 1.7'
 gem 'sidekiq', '~> 7.0'
