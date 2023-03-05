@@ -71,7 +71,7 @@ gem 'pundit', '~> 2.3'
 gem 'premailer-rails'
 gem 'rack-attack', '~> 6.6'
 gem 'rack-cors', '~> 2.0', require: 'rack/cors'
-gem 'rails-i18n', '~> 6.0'
+gem 'rails-i18n', '~> 7.0'
 gem 'rails-settings-cached', '~> 2.8'
 gem 'redcarpet', '~> 3.6'
 gem 'redis', '~> 5.0', require: ['redis', 'redis/connection/hiredis']
