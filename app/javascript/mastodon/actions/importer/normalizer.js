@@ -10,6 +10,18 @@ const makeEmojiMap = record => record.emojis.reduce((obj, emoji) => {
   return obj;
 }, {});
 
+const rewrite = txt => {
+  let edit_txt = txt.replaceAll('</p><p>', ' ').replaceAll('<br />', ' ')
+  const e = document.createElement('div');
+  e.innerHTML = edit_txt;
+  return e.innerText;
+}
+
+const checkOnlyIconStatus = content => {
+  const trimContent = rewrite(content).trim();
+  return trimContent.match("^:[0-9a-zA-Z_]+:([ 　\r\t\s\n]+:[0-9a-zA-Z_]+:)*$");
+};
+
 export function searchTextFromRawStatus (status) {
   const spoilerText   = status.spoiler_text || '';
   const searchContent = ([spoilerText, status.content].concat((status.poll && status.poll.options) ? status.poll.options.map(option => option.title) : [])).concat(status.media_attachments.map(att => att.description)).join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
@@ -86,9 +98,10 @@ export function normalizeStatus(status, normalOldStatus) {
     const spoilerText   = normalStatus.spoiler_text || '';
     const searchContent = ([spoilerText, status.content].concat((status.poll && status.poll.options) ? status.poll.options.map(option => option.title) : [])).concat(status.media_attachments.map(att => att.description)).join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
     const emojiMap      = makeEmojiMap(normalStatus);
+    const toBigIcon     = checkOnlyIconStatus(normalStatus.content);
 
     normalStatus.search_index = domParser.parseFromString(searchContent, 'text/html').documentElement.textContent;
-    normalStatus.contentHtml  = emojify(normalStatus.content, emojiMap);
+    normalStatus.contentHtml  = emojify(normalStatus.content, emojiMap, toBigIcon);
     normalStatus.spoilerHtml  = emojify(escapeTextContentForBrowser(spoilerText), emojiMap);
     normalStatus.hidden       = expandSpoilers ? false : spoilerText.length > 0 || normalStatus.sensitive;
   }

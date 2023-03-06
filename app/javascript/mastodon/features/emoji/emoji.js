@@ -19,7 +19,7 @@ const emojiFilename = (filename) => {
   return borderedEmoji.includes(filename) ? (filename + '_border') : filename;
 };
 
-const emojifyTextNode = (node, customEmojis) => {
+const emojifyTextNode = (node, customEmojis, bigIcon) => {
   let str = node.textContent;
 
   const fragment = new DocumentFragment();
@@ -49,9 +49,10 @@ const emojifyTextNode = (node, customEmojis) => {
         // if you want additional emoji handler, add statements below which set replacement and return true.
         if (shortname in customEmojis) {
           const filename = autoPlayGif ? customEmojis[shortname].url : customEmojis[shortname].static_url;
+          const bigIconClass = bigIcon ? " big_icon" : "" ;
           replacement = document.createElement('img');
           replacement.setAttribute('draggable', false);
-          replacement.setAttribute('class', 'emojione custom-emoji');
+          replacement.setAttribute('class', 'emojione custom-emoji' + bigIconClass);
           replacement.setAttribute('alt', shortname);
           replacement.setAttribute('title', shortname);
           replacement.setAttribute('src', filename);
@@ -64,9 +65,10 @@ const emojifyTextNode = (node, customEmojis) => {
     } else { // matched to unicode emoji
       const { filename, shortCode } = unicodeMapping[match];
       const title = shortCode ? `:${shortCode}:` : '';
+      const bigIconClass = bigIcon ? " big_icon" : "" ;
       replacement = document.createElement('img');
       replacement.setAttribute('draggable', false);
-      replacement.setAttribute('class', 'emojione');
+      replacement.setAttribute('class', 'emojione' + bigIconClass);
       replacement.setAttribute('alt', match);
       replacement.setAttribute('title', title);
       replacement.setAttribute('src', `${assetHost}/emoji/${emojiFilename(filename)}.svg`);
@@ -88,28 +90,28 @@ const emojifyTextNode = (node, customEmojis) => {
   node.parentElement.replaceChild(fragment, node);
 };
 
-const emojifyNode = (node, customEmojis) => {
+const emojifyNode = (node, customEmojis, bigIcon = false) => {
   for (const child of node.childNodes) {
     switch(child.nodeType) {
     case Node.TEXT_NODE:
-      emojifyTextNode(child, customEmojis);
+      emojifyTextNode(child, customEmojis, bigIcon);
       break;
     case Node.ELEMENT_NODE:
       if (!child.classList.contains('invisible'))
-        emojifyNode(child, customEmojis);
+        emojifyNode(child, customEmojis, bigIcon);
       break;
     }
   }
 };
 
-const emojify = (str, customEmojis = {}) => {
+const emojify = (str, customEmojis = {}, bigIcon = false) => {
   const wrapper = document.createElement('div');
   wrapper.innerHTML = str;
 
   if (!Object.keys(customEmojis).length)
     customEmojis = null;
 
-  emojifyNode(wrapper, customEmojis);
+  emojifyNode(wrapper, customEmojis, bigIcon);
 
   return wrapper.innerHTML;
 };
