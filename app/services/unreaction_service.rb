@@ -6,15 +6,15 @@ class UnreactionService < BaseService
   def call(account, status)
     reaction = Reaction.find_by!(account: account, status: status)
     reaction.destroy!
-    create_notification(reaction) if !status.account.local? && status.account.activitypub?
+    create_notification(account, reaction)
     reaction
   end
 
   private
 
-  def create_notification(reaction)
+  def create_notification(current_account, reaction)
     status = reaction.status
-    ActivityPub::DeliveryWorker.perform_async(build_json(reaction), reaction.account_id, status.account.inbox_url)
+    ActivityPub::ReactionsDistributionWorker.perform_async(build_json(reaction), current_account.id, status.account.shared_inbox_url)
   end
 
   def build_json(reaction)
