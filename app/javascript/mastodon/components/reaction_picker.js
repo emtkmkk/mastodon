@@ -34,7 +34,7 @@ const backgroundImageFn = () => `${assetHost}/emoji/sheet_13.png`;
 const notFoundFn = () => (
   <div className='emoji-mart-no-results'>
     <Emoji
-      emoji='sleuth_or_spy'
+      emoji='thinking_face'
       set='twitter'
       size={32}
       sheetSize={32}
