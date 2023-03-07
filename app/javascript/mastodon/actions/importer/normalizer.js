@@ -19,7 +19,19 @@ const rewrite = txt => {
 
 const checkOnlyIconStatus = content => {
   const trimContent = rewrite(content).trim();
-  return trimContent.match("^(​)*:[0-9a-zA-Z_]+:([ 　​\r\t\s\n]+:[0-9a-zA-Z_]+:)*(​)*$");
+  if (!trimContent.match("^(​)*:[0-9a-zA-Z_]+:([ 　​\r\t\s\n]+:[0-9a-zA-Z_]+:){0,29}(​)*$")){
+    return 0;
+  }
+  if (trimContent.match("^(​)*:[0-9a-zA-Z_]+:([ 　​\r\t\s\n]+:[0-9a-zA-Z_]+:){0,2}(​)*$")){
+    return 1;
+  }
+  if (trimContent.match("^(​)*:[0-9a-zA-Z_]+:([ 　​\r\t\s\n]+:[0-9a-zA-Z_]+:){3,13}(​)*$")){
+    return 2;
+  }
+  if (trimContent.match("^(​)*:[0-9a-zA-Z_]+:([ 　​\r\t\s\n]+:[0-9a-zA-Z_]+:){4,29}(​)*$")){
+    return 3;
+  }
+  return 0;
 };
 
 export function searchTextFromRawStatus (status) {

@@ -19,7 +19,7 @@ const emojiFilename = (filename) => {
   return borderedEmoji.includes(filename) ? (filename + '_border') : filename;
 };
 
-const emojifyTextNode = (node, customEmojis, bigIcon) => {
+const emojifyTextNode = (node, customEmojis, bigIcon = 0) => {
   let str = node.textContent;
 
   const fragment = new DocumentFragment();
@@ -65,7 +65,7 @@ const emojifyTextNode = (node, customEmojis, bigIcon) => {
     } else { // matched to unicode emoji
       const { filename, shortCode } = unicodeMapping[match];
       const title = shortCode ? `:${shortCode}:` : '';
-      const bigIconClass = bigIcon ? " big_icon" : "" ;
+      const bigIconClass = bigIcon == 0 ? "" : " big_icon_" + bigIcon ;
       replacement = document.createElement('img');
       replacement.setAttribute('draggable', false);
       replacement.setAttribute('class', 'emojione' + bigIconClass);
@@ -90,7 +90,7 @@ const emojifyTextNode = (node, customEmojis, bigIcon) => {
   node.parentElement.replaceChild(fragment, node);
 };
 
-const emojifyNode = (node, customEmojis, bigIcon = false) => {
+const emojifyNode = (node, customEmojis, bigIcon = 0) => {
   for (const child of node.childNodes) {
     switch(child.nodeType) {
     case Node.TEXT_NODE:
@@ -104,7 +104,7 @@ const emojifyNode = (node, customEmojis, bigIcon = false) => {
   }
 };
 
-const emojify = (str, customEmojis = {}, bigIcon = false) => {
+const emojify = (str, customEmojis = {}, bigIcon = 0) => {
   const wrapper = document.createElement('div');
   wrapper.innerHTML = str;
 
