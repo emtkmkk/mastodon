@@ -49,7 +49,7 @@ const emojifyTextNode = (node, customEmojis, bigIcon = 0) => {
         // if you want additional emoji handler, add statements below which set replacement and return true.
         if (shortname in customEmojis) {
           const filename = autoPlayGif ? customEmojis[shortname].url : customEmojis[shortname].static_url;
-          const bigIconClass = bigIcon ? " big_icon" : "" ;
+          const bigIconClass = bigIcon == 0 ? "" : " big_icon_" + bigIcon ;
           replacement = document.createElement('img');
           replacement.setAttribute('draggable', false);
           replacement.setAttribute('class', 'emojione custom-emoji' + bigIconClass);
