@@ -39,7 +39,7 @@ class NodeInfo::Serializer < ActiveModel::Serializer
 
   def metadata
     {
-      nodeName: 'もこもこ港【リアクション受け取れます！】',
+      nodeName: 'もこもこ港 【リアクション対応済！】',
       nodeDescription: "Misskeyの皆さんこんにちは。\nこんな場所を見てくれてありがとうございます。\nリアクションを受け取る機能が入っているのでドシドシリアクションしてくれると嬉しいです。\nサーバー登録は承認制なのでサーバー内の誰かとよく話す人のみどうぞ。",
       disableGlobalTimeline: false,
       disableLocalTimeline: false,
