@@ -761,7 +761,7 @@ ja:
       no_status_selected: 何も選択されていないため、変更されていません
       open: 投稿を開く
       original_status: オリジナルの投稿
-      reblogs: ブースト
+      reblogs: リトゥート
       status_changed: 投稿を変更しました
       title: 投稿一覧
       trending: トレンド
@@ -1310,9 +1310,9 @@ ja:
     poll:
       subject: "%{name} さんの投票が終了しました"
     reblog:
-      body: "%{name}さんにブーストされた、あなたの投稿があります:"
-      subject: "%{name}さんにブーストされました"
-      title: 新たなブースト
+      body: "%{name}さんにリトゥートされた、あなたの投稿があります:"
+      subject: "%{name}さんにリトゥートされました"
+      title: 新たなリトゥート
     status:
       subject: "%{name}さんがトゥートしました"
     update:
@@ -1474,7 +1474,7 @@ ja:
         other: "%{count}枚の画像"
       video:
         other: "%{count}本の動画"
-    boosted_from_html: "%{acct_link}からブースト"
+    boosted_from_html: "%{acct_link}からリトゥート"
     content_warning: '閲覧注意: %{warning}'
     default_language: UIの表示言語
     disallowed_hashtags:
@@ -1488,7 +1488,7 @@ ja:
       direct: 返信したユーザーのみに表示される投稿はピン留めできません
       limit: 固定できる投稿数の上限に達しました
       ownership: 他人の投稿を固定することはできません
-      reblog: ブーストを固定することはできません
+      reblog: リトゥートを固定することはできません
     poll:
       total_people:
         other: "%{count}人"
@@ -1517,7 +1517,7 @@ ja:
     ignore_favs: 設定しない
     ignore_reblogs: 設定しない
     interaction_exceptions: インタラクションに基づく例外
-    interaction_exceptions_explanation: ふぁぼやブーストの基準値を一度超えてしまった投稿は、基準値を下回った後であっても、削除される保証はありません。
+    interaction_exceptions_explanation: ふぁぼやリトゥートの基準値を一度超えてしまった投稿は、基準値を下回った後であっても、削除される保証はありません。
     keep_direct: ダイレクトメッセージを保持
     keep_direct_hint: ダイレクトメッセージを削除せずに残します
     keep_media: メディア付きの投稿を保持
@@ -1542,11 +1542,11 @@ ja:
     min_age_label: 投稿を保持する期間
     min_favs: ふぁぼ数の基準値
     min_favs_hint: この数以上、ふぁぼられた投稿を削除せずに残します。空白にしておくと、ふぁぼられた数に関わらず投稿を削除します。
-    min_reblogs: ブーストの基準値
-    min_reblogs_hint: この数以上、ブーストされた投稿を削除せずに残します。空白にしておくと、ブーストされた数に関わらず投稿を削除します。
+    min_reblogs: リトゥートの基準値
+    min_reblogs_hint: この数以上、リトゥートされた投稿を削除せずに残します。空白にしておくと、リトゥートされた数に関わらず投稿を削除します。
   stream_entries:
     pinned: 固定された投稿
-    reblogged: さんがブースト
+    reblogged: さんがリトゥート
     sensitive_content: 閲覧注意
   strikes:
     errors:
