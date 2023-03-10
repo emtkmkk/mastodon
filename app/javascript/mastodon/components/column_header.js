@@ -155,7 +155,7 @@ class ColumnHeader extends React.PureComponent {
           onClick={this.handleToggleClick}
         >
           <i className='icon-with-badge'>
-            <Icon id='sliders' />
+            <Icon id='gear' />
             {collapseIssues && <i className='icon-with-badge__issue-badge' />}
           </i>
         </button>
