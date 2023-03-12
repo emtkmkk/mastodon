@@ -6,7 +6,7 @@ import { Map as ImmutableMap } from 'immutable';
 import { useEmoji } from '../actions/emojis';
 
 const perLine = 8;
-const lines   = 2;
+const lines   = 6;
 
 const DEFAULTS = [
   '+1',
