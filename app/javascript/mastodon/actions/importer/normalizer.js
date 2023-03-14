@@ -19,16 +19,16 @@ const rewrite = txt => {
 
 const checkOnlyIconStatus = content => {
   const trimContent = rewrite(content).trim();
-  if (!trimContent.match("^(​)*:[0-9a-zA-Z_]+:([ 　​\r\t\s\n]+:[0-9a-zA-Z_]+:){0,29}(​)*$")){
+  if (!trimContent.match("^(\@[0-9a-zA-Z_]+[ 　​\r\t\s\n]+)*[​\s]*:[0-9a-zA-Z_]+:([ 　​\r\t\s\n]+:[0-9a-zA-Z_]+:){0,29}[​\s]*([ 　​\r\t\s\n]*#[^ 　​\r\t\s\n]+[ 　​\r\t\s\n]*)*$")){
     return 0;
-  }
-  if (trimContent.match("^(​)*:[0-9a-zA-Z_]+:([ 　​\r\t\s\n]+:[0-9a-zA-Z_]+:){0,2}(​)*$")){
+  }​
+  if (trimContent.match("^(\@[0-9a-zA-Z_]+[ 　​\r\t\s\n]+)*[​\s]*:[0-9a-zA-Z_]+:([ 　​\r\t\s\n]+:[0-9a-zA-Z_]+:){0,2}[​\s]*([ 　​\r\t\s\n]*#[^ 　​\r\t\s\n]+[ 　​\r\t\s\n]*)*$")){
     return 1;
   }
-  if (trimContent.match("^(​)*:[0-9a-zA-Z_]+:([ 　​\r\t\s\n]+:[0-9a-zA-Z_]+:){3,13}(​)*$")){
+  if (trimContent.match("^(\@[0-9a-zA-Z_]+[ 　​\r\t\s\n]+)*[​\s]*:[0-9a-zA-Z_]+:([ 　​\r\t\s\n]+:[0-9a-zA-Z_]+:){3,13}[​\s]*([ 　​\r\t\s\n]*#[^ 　​\r\t\s\n]+[ 　​\r\t\s\n]*)*$")){
     return 2;
   }
-  if (trimContent.match("^(​)*:[0-9a-zA-Z_]+:([ 　​\r\t\s\n]+:[0-9a-zA-Z_]+:){4,29}(​)*$")){
+  if (trimContent.match("^(\@[0-9a-zA-Z_]+[ 　​\r\t\s\n]+)*[​\s]*:[0-9a-zA-Z_]+:([ 　​\r\t\s\n]+:[0-9a-zA-Z_]+:){14,29}[​\s]*([ 　​\r\t\s\n]*#[^ 　​\r\t\s\n]+[ 　​\r\t\s\n]*)*$")){
     return 3;
   }
   return 0;
