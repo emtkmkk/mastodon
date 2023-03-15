@@ -18,17 +18,32 @@ const rewrite = txt => {
 }
 
 const checkOnlyIconStatus = content => {
+
   const trimContent = rewrite(content).trim();
-  if (!trimContent.match("^(\@[0-9a-zA-Z_]+[ 　​\r\t\s\n]+)*[​\s]*:[0-9a-zA-Z_]+:([ 　​\r\t\s\n]+:[0-9a-zA-Z_]+:){0,29}[​\s]*([ 　​\r\t\s\n]*#[^ 　​\r\t\s\n]+[ 　​\r\t\s\n]*)*$")){
+  
+  const reg_left = "^(\@[^ 　​\r\t\s\n]+[ 　​\r\t\s\n]+)*[​\s]*:[0-9a-zA-Z_]+:([ 　​\r\t\s\n]+:[0-9a-zA-Z_]+:){";
+  const reg_right = "}[​\s]*([ 　​\r\t\s\n]*#[^ 　​\r\t\s\n]+[ 　​\r\t\s\n]*)*$";
+  
+  const bg0 = 0;
+  const bg1 = 2;
+  const bg2 = 13;
+  const bg3 = 29;
+  
+  const reg0 = new RegExp( reg_left + bg0 +  "," + bg3 + reg_right , "iu");
+  const reg1 = new RegExp( reg_left + bg0 + "," + bg1 + reg_right, "iu");
+  const reg2 = new RegExp( reg_left + bg1 + "," + bg2 + reg_right, "iu");
+  const reg3 = new RegExp( reg_left + bg2 + "," + bg3 + reg_right, "iu");
+  
+  if (!trimContent.match(reg0)){
     return 0;
-  }​
-  if (trimContent.match("^(\@[0-9a-zA-Z_]+[ 　​\r\t\s\n]+)*[​\s]*:[0-9a-zA-Z_]+:([ 　​\r\t\s\n]+:[0-9a-zA-Z_]+:){0,2}[​\s]*([ 　​\r\t\s\n]*#[^ 　​\r\t\s\n]+[ 　​\r\t\s\n]*)*$")){
+  }
+  if (trimContent.match(reg1)){
     return 1;
   }
-  if (trimContent.match("^(\@[0-9a-zA-Z_]+[ 　​\r\t\s\n]+)*[​\s]*:[0-9a-zA-Z_]+:([ 　​\r\t\s\n]+:[0-9a-zA-Z_]+:){3,13}[​\s]*([ 　​\r\t\s\n]*#[^ 　​\r\t\s\n]+[ 　​\r\t\s\n]*)*$")){
+  if (trimContent.match(reg2)){
     return 2;
   }
-  if (trimContent.match("^(\@[0-9a-zA-Z_]+[ 　​\r\t\s\n]+)*[​\s]*:[0-9a-zA-Z_]+:([ 　​\r\t\s\n]+:[0-9a-zA-Z_]+:){14,29}[​\s]*([ 　​\r\t\s\n]*#[^ 　​\r\t\s\n]+[ 　​\r\t\s\n]*)*$")){
+  if (trimContent.match(reg3)){
     return 3;
   }
   return 0;
