@@ -121,7 +121,7 @@ class Notification extends ImmutablePureComponent {
     };
   }
 
-  renderFollow (notification, account, link, date) {
+  renderFollow (notification, account, link, date = '???') {
     const { intl, unread } = this.props;
 
     return (
@@ -143,7 +143,7 @@ class Notification extends ImmutablePureComponent {
     );
   }
 
-  renderFollowRequest (notification, account, link, date) {
+  renderFollowRequest (notification, account, link, date = '???') {
     const { intl, unread } = this.props;
 
     return (
@@ -183,7 +183,7 @@ class Notification extends ImmutablePureComponent {
     );
   }
 
-  renderFavourite (notification, link, date) {
+  renderFavourite (notification, link, date = '???') {
     const { intl, unread } = this.props;
 
     return (
@@ -215,7 +215,7 @@ class Notification extends ImmutablePureComponent {
     );
   }
 
-  renderReaction (notification, link, date) {
+  renderReaction (notification, link, date = '???') {
     const { intl, unread } = this.props;
 
     return (
@@ -247,7 +247,7 @@ class Notification extends ImmutablePureComponent {
     );
   }
 
-  renderReblog (notification, link, date) {
+  renderReblog (notification, link, date = '???') {
     const { intl, unread } = this.props;
 
     return (
@@ -453,8 +453,7 @@ class Notification extends ImmutablePureComponent {
     const account          = notification.get('account');
     const displayNameHtml  = { __html: account.get('display_name_html') };
     const link             = <bdi><Link className='notification__display-name' href={`/@${account.get('acct')}`} title={account.get('acct')} to={`/@${account.get('acct')}`} dangerouslySetInnerHTML={displayNameHtml} /></bdi>;
-    const date             = <RelativeTimestamp timestamp={notification.get('created_at')} />
-    const emoji            = notification.get('account')
+    const date             = notification.get('created_at') ? <RelativeTimestamp timestamp={notification.get('created_at')} /> : '???'
 
     switch(notification.get('type')) {
     case 'follow':
@@ -462,7 +461,7 @@ class Notification extends ImmutablePureComponent {
     case 'follow_request':
       return this.renderFollowRequest(notification, account, link, date);
     case 'mention':
-      return this.renderMention(notification, date);
+      return this.renderMention(notification);
     case 'favourite':
       return this.renderFavourite(notification, link, date);
     case 'reaction':
