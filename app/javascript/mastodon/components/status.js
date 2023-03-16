@@ -316,6 +316,7 @@ class Status extends ImmutablePureComponent {
   };
 
   render () {
+    let isreblog = false;
     let media = null;
     let statusAvatar, prepend, rebloggedByText;
 
@@ -393,6 +394,7 @@ class Status extends ImmutablePureComponent {
       rebloggedByText = intl.formatMessage({ id: 'status.reblogged_by', defaultMessage: '{name} boosted' }, { name: status.getIn(['account', 'acct']) });
 
       account = status.get('account');
+      isreblog = true;
       status  = status.get('reblog');
     } else if (showThread && status.get('in_reply_to_id') && status.get('in_reply_to_account_id') === status.getIn(['account', 'id'])) {
       const display_name_html = { __html: status.getIn(['account', 'display_name_html']) };
@@ -500,7 +502,7 @@ class Status extends ImmutablePureComponent {
     if (account === undefined || account === null) {
       statusAvatar = <Avatar account={status.get('account')} size={46} />;
     } else {
-      if (status.get('reblog', null) !== null) {
+      if (isreblog) {
         statusAvatar = <AvatarOverlay account={status.get('account')} friend={account} />;
       } else {
         statusAvatar = <Avatar account={account} size={46} />;
