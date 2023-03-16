@@ -500,7 +500,11 @@ class Status extends ImmutablePureComponent {
     if (account === undefined || account === null) {
       statusAvatar = <Avatar account={status.get('account')} size={46} />;
     } else {
-      statusAvatar = <AvatarOverlay account={status.get('account')} friend={account} />;
+      if (status.get('reblog', null) !== null) {
+        statusAvatar = <AvatarOverlay account={status.get('account')} friend={account} />;
+      } else {
+        statusAvatar = <Avatar account={account} size={46} />;
+      }
     }
 
     const visibilityIconInfo = {
