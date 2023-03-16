@@ -121,8 +121,9 @@ class Notification extends ImmutablePureComponent {
     };
   }
 
-  renderFollow (notification, account, link, date = '???') {
+  renderFollow (notification, account, link) {
     const { intl, unread } = this.props;
+    const dat =  <RelativeTimestamp timestamp={notification.get('created_at')} />;
 
     return (
       <HotKeys handlers={this.getHandlers()}>
@@ -133,7 +134,7 @@ class Notification extends ImmutablePureComponent {
             </div>
 
             <span title={notification.get('created_at')}>
-              <FormattedMessage id='notification.follow' defaultMessage='{name} followed you - {date}' values={{ name: link, date: date}} />
+              <FormattedMessage id='notification.follow' defaultMessage='{name} followed you - {date}' values={{ name: link, date: dat }} />
             </span>
           </div>
 
@@ -143,8 +144,9 @@ class Notification extends ImmutablePureComponent {
     );
   }
 
-  renderFollowRequest (notification, account, link, date = '???') {
+  renderFollowRequest (notification, account, link) {
     const { intl, unread } = this.props;
+    const dat =  <RelativeTimestamp timestamp={notification.get('created_at')} />;
 
     return (
       <HotKeys handlers={this.getHandlers()}>
@@ -155,7 +157,7 @@ class Notification extends ImmutablePureComponent {
             </div>
 
             <span title={notification.get('created_at')}>
-              <FormattedMessage id='notification.follow_request' defaultMessage='{name} has requested to follow you - {date}' values={{ name: link, date: date }} />
+              <FormattedMessage id='notification.follow_request' defaultMessage='{name} has requested to follow you - {date}' values={{ name: link, date: dat }} />
             </span>
           </div>
 
@@ -183,8 +185,9 @@ class Notification extends ImmutablePureComponent {
     );
   }
 
-  renderFavourite (notification, link, date = '???') {
+  renderFavourite (notification, link) {
     const { intl, unread } = this.props;
+    const dat =  <RelativeTimestamp timestamp={notification.get('created_at')} />;
 
     return (
       <HotKeys handlers={this.getHandlers()}>
@@ -195,7 +198,7 @@ class Notification extends ImmutablePureComponent {
             </div>
 
             <span title={notification.get('created_at')}>
-              <FormattedMessage id='notification.favourite' defaultMessage='{name} favourited your status - {date}' values={{ name: link, date: date }} />
+              <FormattedMessage id='notification.favourite' defaultMessage='{name} favourited your status - {date}' values={{ name: link, date: dat }} />
             </span>
           </div>
 
@@ -215,8 +218,9 @@ class Notification extends ImmutablePureComponent {
     );
   }
 
-  renderReaction (notification, link, date = '???') {
+  renderReaction (notification, link) {
     const { intl, unread } = this.props;
+    const dat =  <RelativeTimestamp timestamp={notification.get('created_at')} />;
 
     return (
       <HotKeys handlers={this.getHandlers()}>
@@ -227,7 +231,7 @@ class Notification extends ImmutablePureComponent {
             </div>
 
             <span title={notification.get('created_at')}>
-              <FormattedMessage id='notification.reaction' defaultMessage='{name} reacted your status - {date}' values={{ name: link, date: date }} />
+              <FormattedMessage id='notification.reaction' defaultMessage='{name} reacted your status - {date}' values={{ name: link, date: dat }} />
             </span>
           </div>
 
@@ -247,8 +251,9 @@ class Notification extends ImmutablePureComponent {
     );
   }
 
-  renderReblog (notification, link, date = '???') {
+  renderReblog (notification, link) {
     const { intl, unread } = this.props;
+    const dat =  <RelativeTimestamp timestamp={notification.get('created_at')} />;
 
     return (
       <HotKeys handlers={this.getHandlers()}>
@@ -259,7 +264,7 @@ class Notification extends ImmutablePureComponent {
             </div>
 
             <span title={notification.get('created_at')}>
-              <FormattedMessage id='notification.reblog' defaultMessage='{name} boosted your status - {date}' values={{ name: link, date: date }} />
+              <FormattedMessage id='notification.reblog' defaultMessage='{name} boosted your status - {date}' values={{ name: link, date: dat }} />
             </span>
           </div>
 
@@ -453,21 +458,20 @@ class Notification extends ImmutablePureComponent {
     const account          = notification.get('account');
     const displayNameHtml  = { __html: account.get('display_name_html') };
     const link             = <bdi><Link className='notification__display-name' href={`/@${account.get('acct')}`} title={account.get('acct')} to={`/@${account.get('acct')}`} dangerouslySetInnerHTML={displayNameHtml} /></bdi>;
-    const date             = notification.get('created_at') ? <RelativeTimestamp timestamp={notification.get('created_at')} /> : '???'
 
     switch(notification.get('type')) {
     case 'follow':
-      return this.renderFollow(notification, account, link, date);
+      return this.renderFollow(notification, account, link);
     case 'follow_request':
-      return this.renderFollowRequest(notification, account, link, date);
+      return this.renderFollowRequest(notification, account, link);
     case 'mention':
       return this.renderMention(notification);
     case 'favourite':
-      return this.renderFavourite(notification, link, date);
+      return this.renderFavourite(notification, link);
     case 'reaction':
-      return this.renderReaction(notification, link, date);
+      return this.renderReaction(notification, link);
     case 'reblog':
-      return this.renderReblog(notification, link, date);
+      return this.renderReblog(notification, link);
     case 'status':
       return this.renderStatus(notification, link);
     case 'update':
