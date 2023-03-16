@@ -21,9 +21,9 @@ const checkOnlyIconStatus = content => {
 
   const trimContent = rewrite(content).trim();
   
-  const reg_left = "^(\@[^ 　​\r\t\s\n]+[ 　​\r\t\s\n]+)*[​\s]*:[0-9a-zA-Z_]+:([ 　​\r\t\s\n]+:[0-9a-zA-Z_]+:){";
+  const reg_left = "^(\@([^ 　​\r\t\s\n]|[0-9a-zA-Z_])+[ 　​\r\t\s\n]+)*[​\s]*:[0-9a-zA-Z_]+:([ 　​\r\t\s\n]+:[0-9a-zA-Z_]+:){";
   const reg_right = "}[​\s]*([ 　​\r\t\s\n]*#[^ 　​\r\t\s\n]+[ 　​\r\t\s\n]*)*$";
-  
+
   const bg0 = 0;
   const bg1 = 2;
   const bg2 = 13;
@@ -34,19 +34,19 @@ const checkOnlyIconStatus = content => {
   const reg2 = new RegExp( reg_left + bg1 + "," + bg2 + reg_right, "iu");
   const reg3 = new RegExp( reg_left + bg2 + "," + bg3 + reg_right, "iu");
   
-  if (!trimContent.match(reg0)){
+  if (!reg0.test(trimContent)){
     return 0;
   }
-  if (trimContent.match(reg1)){
+  if (reg1.test(trimContent)){
     return 1;
   }
-  if (trimContent.match(reg2)){
+  if (reg2.test(trimContent)){
     return 2;
   }
-  if (trimContent.match(reg3)){
+  if (reg3.test(trimContent)){
     return 3;
   }
-  return 0;
+  return 4;
 };
 
 export function searchTextFromRawStatus (status) {
