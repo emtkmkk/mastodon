@@ -7,7 +7,6 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { me } from 'mastodon/initial_state';
 import StatusContainer from 'mastodon/containers/status_container';
 import AccountContainer from 'mastodon/containers/account_container';
-import RelativeTimestamp from '../../../components/relative_timestamp';
 import Report from './report';
 import FollowRequestContainer from '../containers/follow_request_container';
 import Icon from 'mastodon/components/icon';
@@ -15,12 +14,12 @@ import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
 const messages = defineMessages({
-  favourite: { id: 'notification.favourite', defaultMessage: '{name} favourited your status - {date}' },
-  follow: { id: 'notification.follow', defaultMessage: '{name} followed you - {date}' },
+  favourite: { id: 'notification.favourite', defaultMessage: '{name} favourited your status' },
+  follow: { id: 'notification.follow', defaultMessage: '{name} followed you' },
   ownPoll: { id: 'notification.own_poll', defaultMessage: 'Your poll has ended' },
   poll: { id: 'notification.poll', defaultMessage: 'A poll you have voted in has ended' },
-  reaction: { id: 'notification.reaction', defaultMessage: '{name} reacted your status - {date}' },
-  reblog: { id: 'notification.reblog', defaultMessage: '{name} boosted your status - {date}' },
+  reaction: { id: 'notification.reaction', defaultMessage: '{name} reacted your status' },
+  reblog: { id: 'notification.reblog', defaultMessage: '{name} boosted your status' },
   status: { id: 'notification.status', defaultMessage: '{name} just posted' },
   update: { id: 'notification.update', defaultMessage: '{name} edited a post' },
   adminSignUp: { id: 'notification.admin.sign_up', defaultMessage: '{name} signed up' },
@@ -123,7 +122,6 @@ class Notification extends ImmutablePureComponent {
 
   renderFollow (notification, account, link) {
     const { intl, unread } = this.props;
-    const dat =  <RelativeTimestamp timestamp={notification.get('created_at')} />;
 
     return (
       <HotKeys handlers={this.getHandlers()}>
@@ -134,7 +132,7 @@ class Notification extends ImmutablePureComponent {
             </div>
 
             <span title={notification.get('created_at')}>
-              <FormattedMessage id='notification.follow' defaultMessage='{name} followed you - {date}' values={{ name: link, date: dat }} />
+              <FormattedMessage id='notification.follow' defaultMessage='{name} followed you' values={{ name: link }} />
             </span>
           </div>
 
@@ -146,7 +144,6 @@ class Notification extends ImmutablePureComponent {
 
   renderFollowRequest (notification, account, link) {
     const { intl, unread } = this.props;
-    const dat =  <RelativeTimestamp timestamp={notification.get('created_at')} />;
 
     return (
       <HotKeys handlers={this.getHandlers()}>
@@ -157,7 +154,7 @@ class Notification extends ImmutablePureComponent {
             </div>
 
             <span title={notification.get('created_at')}>
-              <FormattedMessage id='notification.follow_request' defaultMessage='{name} has requested to follow you - {date}' values={{ name: link, date: dat }} />
+              <FormattedMessage id='notification.follow_request' defaultMessage='{name} has requested to follow you' values={{ name: link }} />
             </span>
           </div>
 
@@ -187,7 +184,6 @@ class Notification extends ImmutablePureComponent {
 
   renderFavourite (notification, link) {
     const { intl, unread } = this.props;
-    const dat =  <RelativeTimestamp timestamp={notification.get('created_at')} />;
 
     return (
       <HotKeys handlers={this.getHandlers()}>
@@ -198,7 +194,7 @@ class Notification extends ImmutablePureComponent {
             </div>
 
             <span title={notification.get('created_at')}>
-              <FormattedMessage id='notification.favourite' defaultMessage='{name} favourited your status - {date}' values={{ name: link, date: dat }} />
+              <FormattedMessage id='notification.favourite' defaultMessage='{name} favourited your status' values={{ name: link }} />
             </span>
           </div>
 
@@ -220,7 +216,6 @@ class Notification extends ImmutablePureComponent {
 
   renderReaction (notification, link) {
     const { intl, unread } = this.props;
-    const dat =  <RelativeTimestamp timestamp={notification.get('created_at')} />;
 
     return (
       <HotKeys handlers={this.getHandlers()}>
@@ -231,7 +226,7 @@ class Notification extends ImmutablePureComponent {
             </div>
 
             <span title={notification.get('created_at')}>
-              <FormattedMessage id='notification.reaction' defaultMessage='{name} reacted your status - {date}' values={{ name: link, date: dat }} />
+              <FormattedMessage id='notification.reaction' defaultMessage='{name} reacted your status' values={{ name: link }} />
             </span>
           </div>
 
@@ -253,7 +248,6 @@ class Notification extends ImmutablePureComponent {
 
   renderReblog (notification, link) {
     const { intl, unread } = this.props;
-    const dat =  <RelativeTimestamp timestamp={notification.get('created_at')} />;
 
     return (
       <HotKeys handlers={this.getHandlers()}>
@@ -264,7 +258,7 @@ class Notification extends ImmutablePureComponent {
             </div>
 
             <span title={notification.get('created_at')}>
-              <FormattedMessage id='notification.reblog' defaultMessage='{name} boosted your status - {date}' values={{ name: link, date: dat }} />
+              <FormattedMessage id='notification.reblog' defaultMessage='{name} boosted your status' values={{ name: link }} />
             </span>
           </div>
 
