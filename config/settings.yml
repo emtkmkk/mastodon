@@ -17,8 +17,8 @@ defaults: &defaults
   timeline_preview: true
   show_staff_badge: true
   default_sensitive: false
-  unfollow_modal: false
-  boost_modal: false
+  unfollow_modal: true
+  boost_modal: true
   delete_modal: true
   auto_play_gif: true
   display_media: 'default'
@@ -28,15 +28,15 @@ defaults: &defaults
   disable_swiping: false
   show_application: true
   system_font_ui: false
-  noindex: false
+  noindex: true
   theme: 'default'
   aggregate_reblogs: true
-  advanced_layout: false
+  advanced_layout: true
   use_blurhash: true
   use_pending_items: false
   trends: true
   trends_as_landing_page: true
-  trendable_by_default: false
+  trendable_by_default: true
   crop_images: true
   notification_emails:
     follow: true
