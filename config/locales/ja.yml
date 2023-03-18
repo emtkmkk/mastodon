@@ -1290,23 +1290,27 @@ ja:
       sign_up:
         subject: "%{name}さんがサインアップしました"
     favourite:
-      body: "%{name}さんにふぁぼられた、あなたの投稿:"
-      subject: "%{name}さんにふぁぼられました"
+      body: "%{name}さんからのふぁぼ、あなたの投稿:"
+      subject: "%{name}さんからのふぁぼ"
       title: 新たなふぁぼ
     follow:
-      body: "%{name}さんにフォローされています！"
-      subject: "%{name}さんにフォローされています"
+      body: "%{name}さんからフォロー"
+      subject: "%{name}さんからフォロー"
       title: 新たなフォロワー
     follow_request:
       action: フォローリクエストの管理
-      body: "%{name}さんがあなたにフォローをリクエストしました"
+      body: "%{name}さんからのフォローリクエスト"
       subject: "%{name}さんからのフォローリクエスト"
       title: 新たなフォローリクエスト
     mention:
       action: 返信
-      body: "%{name}さんから返信がありました:"
-      subject: "%{name}さんに返信されました"
+      body: "%{name}さんからの返信:"
+      subject: "%{name}さんからの返信"
       title: 新たな返信
+    reaction:
+      body: "%{name}さんからのリアクション:"
+      subject: "%{name}さんからのリアクション"
+      title: 新たなリアクション
     poll:
       subject: "%{name} さんの投票が終了しました"
     reblog:
@@ -1516,6 +1520,7 @@ ja:
     explanation: 投稿の削除はサーバーに負荷がかかるため、サーバーが混み合っていないときに時間をかけて行われます。
     ignore_favs: 設定しない
     ignore_reblogs: 設定しない
+    ignore_reactions: 設定しない
     interaction_exceptions: インタラクションに基づく例外
     interaction_exceptions_explanation: ふぁぼやRTの基準値を一度超えてしまった投稿は、基準値を下回った後であっても、削除される保証はありません。
     keep_direct: ダイレクトメッセージを保持
@@ -1530,6 +1535,8 @@ ja:
     keep_self_bookmark_hint: 自分自身でブックマークした投稿を削除せずに残します
     keep_self_fav: ふぁぼった投稿を保持
     keep_self_fav_hint: 自分自身でふぁぼった投稿を削除せずに残します
+    keep_self_reaction: リアクションした投稿を保持
+    keep_self_reaction_hint: 自分自身でリアクションした投稿を削除せずに残します
     min_age:
       '1209600': 2週間
       '15778476': 半年
@@ -1544,6 +1551,8 @@ ja:
     min_favs_hint: この数以上、ふぁぼられた投稿を削除せずに残します。空白にしておくと、ふぁぼられた数に関わらず投稿を削除します。
     min_reblogs: RTの基準値
     min_reblogs_hint: この数以上、RTされた投稿を削除せずに残します。空白にしておくと、RTされた数に関わらず投稿を削除します。
+    min_reactions: リアクション数の基準値
+    min_reactions_hint: この数以上、リアクションされた投稿を削除せずに残します。空白にしておくと、リアクションされた数に関わらず投稿を削除します。
   stream_entries:
     pinned: 固定された投稿
     reblogged: さんがRT
