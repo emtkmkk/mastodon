@@ -4,11 +4,11 @@ class Trends::Links < Trends::Base
   PREFIX = 'trending_links'
 
   self.default_options = {
-    threshold: 2,
+    threshold: 1,
     review_threshold: 1,
     max_score_cooldown: 2.days.freeze,
     max_score_halflife: 8.hours.freeze,
-    decay_threshold: 1,
+    decay_threshold: 0.3,
   }
 
   class Query < Trends::Query
