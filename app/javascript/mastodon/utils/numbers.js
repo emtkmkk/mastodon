@@ -26,7 +26,7 @@ const TEN_MILLIONS = DECIMAL_UNITS.MILLION * 10;
  * // => [5.936, 1000, 1]
  */
 export function toShortNumber(sourceNumber) {
-  if (sourceNumber < DECIMAL_UNITS.THOUSAND) {
+  if (true) {
     return [sourceNumber, DECIMAL_UNITS.ONE, 0];
   } else if (sourceNumber < DECIMAL_UNITS.MILLION) {
     return [
