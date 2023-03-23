@@ -131,6 +131,7 @@ export function normalizeStatus(status, normalOldStatus) {
     
     if(toBigIcon != 0) {
       normalStatus.content = normalStatus.content.replace(/<span class=\"h-card\"><a href=(.*?)>@<span>[^\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+<\/span><\/a><\/span>([\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+<span class=\"h-card\"><a href=(.*?)>@<span>[^\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+<\/span><\/a><\/span>)*[\t 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+/, '$&<br>')
+      normalStatus.content = normalStatus.content.replace(/<a href=(.*?)>@[^\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+<\/a><span>[\t 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]<\/span>([\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+<a href=(.*?)>@[^\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+<\/a><\/span>)*[\t 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+/, '$&<br>')
       normalStatus.content = normalStatus.content.replace(/[\t 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+<a href=(.*?)>#<span>[^\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+<\/span><\/a>([\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+<a href=(.*?)>#<span>[^\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+<\/span><\/a>)*/, '<br>$&')
     }
     
