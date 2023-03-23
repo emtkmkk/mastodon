@@ -256,7 +256,7 @@ class ReactionPickerMenu extends React.PureComponent {
       <div className={classNames('reaction-picker__menu', { selecting: modifierOpen })}>
         <EmojiPicker
           perLine={8}
-          emojiSize={22}
+          emojiSize={26}
           sheetSize={32}
           custom={buildCustomEmojis(custom_emojis)}
           color=''
@@ -270,7 +270,7 @@ class ReactionPickerMenu extends React.PureComponent {
           skin={skinTone}
           showPreview={false}
           showSkinTones={false}
-          skinTonePosition={'search'}
+          skinTonePosition={'none'}
           backgroundImageFn={backgroundImageFn}
           notFound={notFoundFn}
           autoFocus={this.state.readyToFocus}
