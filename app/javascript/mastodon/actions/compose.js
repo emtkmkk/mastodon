@@ -509,7 +509,8 @@ const fetchComposeSuggestionsAccounts = throttle((dispatch, getState, token) => 
     params: {
       q: token.slice(1),
       resolve: false,
-      limit: 4,
+      limit: 6,
+      following: true,
     },
   }).then(response => {
     dispatch(importFetchedAccounts(response.data));
@@ -524,7 +525,7 @@ const fetchComposeSuggestionsAccounts = throttle((dispatch, getState, token) => 
 }, 200, { leading: true, trailing: true });
 
 const fetchComposeSuggestionsEmojis = (dispatch, getState, token) => {
-  const results = emojiSearch(token.replace(':', ''), { maxResults: 5 });
+  const results = emojiSearch(token.replace(':', ''), { maxResults: 8 });
   dispatch(readyComposeSuggestionsEmojis(token, results));
 };
 
@@ -544,8 +545,8 @@ const fetchComposeSuggestionsTags = throttle((dispatch, getState, token) => {
       type: 'hashtags',
       q: token.slice(1),
       resolve: false,
-      limit: 4,
-      exclude_unreviewed: true,
+      limit: 6,
+      exclude_unreviewed: false,
     },
   }).then(({ data }) => {
     dispatch(readyComposeSuggestionsTags(token, data.hashtags));
