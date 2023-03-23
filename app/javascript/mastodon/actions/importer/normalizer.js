@@ -21,18 +21,19 @@ const checkOnlyIconStatus = content => {
 
   const trimContent = rewrite(content).trim();
   
-  const reg_left = "^(\@[^ 　​\r\t\s\n]+[ 　​\r\t\s\n]+)*[​\s]*:[0-9a-zA-Z_]+:([ 　​\r\t\s\n]+:[0-9a-zA-Z_]+:){";
-  const reg_right = "}[​\s]*([ 　​\r\t\s\n]*#[^ 　​\r\t\s\n]+[ 　​\r\t\s\n]*)*$";
+
+  const reg_left = "^([@#][^\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+[\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+)*[\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]*:[0-9a-zA-Z_]+:([\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+:[0-9a-zA-Z_]+:){";
+  const reg_right = "}[\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]*([@#][^\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+[\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]*)*$";
   
   const bg0 = 0;
   const bg1 = 2;
   const bg2 = 13;
   const bg3 = 29;
   
-  const reg0 = new RegExp( reg_left + bg0 +  "," + bg3 + reg_right , "iu");
-  const reg1 = new RegExp( reg_left + bg0 + "," + bg1 + reg_right, "iu");
-  const reg2 = new RegExp( reg_left + bg1 + "," + bg2 + reg_right, "iu");
-  const reg3 = new RegExp( reg_left + bg2 + "," + bg3 + reg_right, "iu");
+  const reg0 = new RegExp( reg_left + bg0 +  "," + bg3 + reg_right , "i");
+  const reg1 = new RegExp( reg_left + bg0 + "," + bg1 + reg_right, "i");
+  const reg2 = new RegExp( reg_left + bg1 + "," + bg2 + reg_right, "i");
+  const reg3 = new RegExp( reg_left + bg2 + "," + bg3 + reg_right, "i");
   
   if (!trimContent.match(reg0)){
     return 0;
@@ -121,12 +122,18 @@ export function normalizeStatus(status, normalOldStatus) {
       normalStatus.content = normalStatus.spoiler_text;
       normalStatus.spoiler_text = '';
     }
+    
 
     const spoilerText   = normalStatus.spoiler_text || '';
     const searchContent = ([spoilerText, status.content].concat((status.poll && status.poll.options) ? status.poll.options.map(option => option.title) : [])).concat(status.media_attachments.map(att => att.description)).join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
     const emojiMap      = makeEmojiMap(normalStatus);
     const toBigIcon     = checkOnlyIconStatus(normalStatus.content);
-
+    
+    if(toBigIcon != 0) {
+      normalStatus.content = normalStatus.content.replace(/<span class=\"h-card\"><a href=(.*?)>@<span>[^\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+<\/span><\/a><\/span>([\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+<span class=\"h-card\"><a href=(.*?)>@<span>[^\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+<\/span><\/a><\/span>)*[\t 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+/, '$&<br>')
+      normalStatus.content = normalStatus.content.replace(/[\t 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+<a href=(.*?)>#<span>[^\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+<\/span><\/a>([\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+<a href=(.*?)>#<span>[^\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+<\/span><\/a>)*/, '<br>$&')
+    }
+    
     normalStatus.search_index = domParser.parseFromString(searchContent, 'text/html').documentElement.textContent;
     normalStatus.contentHtml  = emojify(normalStatus.content, emojiMap, toBigIcon);
     normalStatus.spoilerHtml  = emojify(escapeTextContentForBrowser(spoilerText), emojiMap);
