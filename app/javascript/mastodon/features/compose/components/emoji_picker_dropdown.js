@@ -225,7 +225,7 @@ class EmojiPickerMenu extends React.PureComponent {
     if (!emoji.native) {
       emoji.native = emoji.colons;
     }
-    if (!(event.ctrlKey || event.metaKey)) {
+    if ((event.ctrlKey || event.metaKey)) {
       this.props.onClose();
     }
     this.props.onPick(emoji);
@@ -247,7 +247,7 @@ class EmojiPickerMenu extends React.PureComponent {
     const { loading, style, intl, custom_emojis, skinTone, frequentlyUsedEmojis } = this.props;
 
     if (loading) {
-      return <div style={{ width: 299 }} />;
+      return <div style={{ width: 349 }} />;
     }
 
     const title = intl.formatMessage(messages.emoji);
@@ -272,7 +272,7 @@ class EmojiPickerMenu extends React.PureComponent {
       <div className={classNames('emoji-picker-dropdown__menu', { selecting: modifierOpen })} style={style} ref={this.setRef}>
         <EmojiPicker
           perLine={8}
-          emojiSize={22}
+          emojiSize={26}
           sheetSize={32}
           custom={buildCustomEmojis(custom_emojis)}
           color=''
@@ -284,21 +284,14 @@ class EmojiPickerMenu extends React.PureComponent {
           include={categoriesSort}
           recent={frequentlyUsedEmojis}
           skin={skinTone}
-          showPreview={false}
           showSkinTones={false}
           backgroundImageFn={backgroundImageFn}
           notFound={notFoundFn}
-          autoFocus={this.state.readyToFocus}
+          autoFocus={false}
+          showPreview={true}
           emojiTooltip
         />
 
-        <ModifierPicker
-          active={modifierOpen}
-          modifier={skinTone}
-          onOpen={this.handleModifierOpen}
-          onClose={this.handleModifierClose}
-          onChange={this.handleModifierChange}
-        />
       </div>
     );
   }
@@ -389,7 +382,7 @@ class EmojiPickerDropdown extends React.PureComponent {
 
         <Overlay show={active} placement={'bottom'} target={this.findTarget} popperConfig={{ strategy: 'fixed' }}>
           {({ props, placement })=> (
-            <div {...props} style={{ ...props.style, width: 299 }}>
+            <div {...props} style={{ ...props.style, width: 349 }}>
               <div className={`dropdown-animation ${placement}`}>
                 <EmojiPickerMenu
                   custom_emojis={this.props.custom_emojis}
