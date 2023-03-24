@@ -130,7 +130,7 @@ class Trends::Links < Trends::Base
       end
 
       decaying_score = begin
-        if max_score.zero? || !valid_locale?(preview_card.language)
+        if max_score.zero?
           0
         else
           max_score * (0.5**((at_time.to_f - max_time.to_f) / options[:max_score_halflife].to_f))
