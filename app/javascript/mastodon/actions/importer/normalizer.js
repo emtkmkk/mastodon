@@ -22,8 +22,8 @@ const checkOnlyIconStatus = content => {
   const trimContent = rewrite(content).trim();
   
 
-  const reg_left = "^([@#][^\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+[\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+)*[\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]*:[0-9a-zA-Z_]+:([\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+:[0-9a-zA-Z_]+:){";
-  const reg_right = "}[\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]*([@#][^\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+[\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]*)*$";
+  const reg_left = "^([@#][^\\s　\u200b]+[\\s　\u200b]+)*[\\s　\u200b]*:\\w+:([\\s　\u200b]+:\\w+:){";
+  const reg_right = "}[\\s　\u200b]*([@#][^\\s　\u200b]+[\\s　\u200b]*)*$";
   
   const bg0 = 0;
   const bg1 = 2;
@@ -130,9 +130,9 @@ export function normalizeStatus(status, normalOldStatus) {
     const toBigIcon     = checkOnlyIconStatus(normalStatus.content);
     
     if(toBigIcon != 0) {
-      normalStatus.content = normalStatus.content.replace(/<span class=\"h-card\"><a href=(.*?)>@<span>[^\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+<\/span><\/a><\/span>([\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+<span class=\"h-card\"><a href=(.*?)>@<span>[^\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+<\/span><\/a><\/span>)*[\t 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+/, '$&<br>')
-      normalStatus.content = normalStatus.content.replace(/<a href=(.*?)>@[^\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+<\/a><span>[\t 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]<\/span>([\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+<a href=(.*?)>@[^\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+<\/a><\/span>)*[\t 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+/, '$&<br>')
-      normalStatus.content = normalStatus.content.replace(/[\t 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+<a href=(.*?)>#<span>[^\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+<\/span><\/a>([\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+<a href=(.*?)>#<span>[^\r\n\t\f\v 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+<\/span><\/a>)*/, '<br>$&')
+      normalStatus.content = normalStatus.content.replace(/<span class=\"h-card\"><a href=(.*?)>[@#]<span>[^\\s　\u200b]+<\/span><\/a><\/span>([\s　\u200b]+<span class=\"h-card\"><a href=(.*?)>[@#]<span>[^\s　\u200b]+<\/span><\/a><\/span>)*[\t 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+/, '$&<br>')
+      normalStatus.content = normalStatus.content.replace(/<a href=(.*?)>[@#][^\s　\u200b]+<\/a><span>[\t 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]<\/span>([\s　\u200b]+<a href=(.*?)>[@#][^\s　\u200b]+<\/a><\/span>)*[\t 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+/, '$&<br>')
+      normalStatus.content = normalStatus.content.replace(/[\t 　\u00a0\u1680\u2000-\u200b\u2028\u2029\u202f\u205f\u3000\ufeff]+<a href=(.*?)>[@#]<span>[^\s　\u200b]+<\/span><\/a>([\s　\u200b]+<a href=(.*?)>[@#]<span>[^\s　\u200b]+<\/span><\/a>)*/, '<br>$&')
     }
     
     normalStatus.search_index = domParser.parseFromString(searchContent, 'text/html').documentElement.textContent;
