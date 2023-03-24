@@ -24,8 +24,8 @@ const messages = defineMessages({
 const dateFormatOptions = {
   hour12: false,
   year: 'numeric',
-  month: 'short',
-  day: '2-digit',
+  month: 'numeric',
+  day: 'numeric',
   hour: '2-digit',
   minute: '2-digit',
 };
