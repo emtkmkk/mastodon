@@ -4,11 +4,11 @@ class Trends::Tags < Trends::Base
   PREFIX = 'trending_tags'
 
   self.default_options = {
-    threshold: 2,
+    threshold: 1,
     review_threshold: 1,
     max_score_cooldown: 2.days.freeze,
-    max_score_halflife: 4.hours.freeze,
-    decay_threshold: 1,
+    max_score_halflife: 8.hours.freeze,
+    decay_threshold: 0.2,
   }
 
   def register(status, at_time = Time.now.utc)
