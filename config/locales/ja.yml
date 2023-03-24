@@ -18,8 +18,8 @@ ja:
     pin_errors:
       following: おすすめしたい人はあなたが既にフォローしている必要があります
     posts:
-      other: 投稿
-    posts_tab_heading: 投稿
+      other: トゥート
+    posts_tab_heading: トゥート
   admin:
     account_actions:
       action: アクションを実行
@@ -80,9 +80,9 @@ ja:
         all: すべて
         local: ローカル
         remote: リモート
-        title: ロケーション
+        title: 場所
       login_status: ログイン
-      media_attachments: 添付されたメディア
+      media_attachments: 添付メディア
       memorialize: 追悼アカウント化
       memorialized: 追悼化済み
       memorialized_msg: "%{username} を追悼アカウント化しました"
@@ -101,13 +101,13 @@ ja:
       no_role_assigned: ロールが割り当てられていません
       not_subscribed: 購読していない
       pending: 承認待ち
-      perform_full_suspension: 活動を完全に停止させる
+      perform_full_suspension: 活動停止
       previous_strikes: 以前のストライク
       previous_strikes_description_html:
         other: "<strong>%{count}</strong> ストライクがあります。"
       promote: 昇格
       protocol: プロトコル
-      public: パブリック
+      public: 公開
       push_subscription_expires: PuSH購読期限
       redownload: プロフィールを更新
       redownloaded_msg: "%{username}のプロフィールを正常に更新しました"
@@ -141,11 +141,11 @@ ja:
         targeted_reports: このアカウントについての通報
       silence: サイレンス
       silenced: サイレンス済み
-      statuses: 投稿数
+      statuses: トゥート数
       strikes: 前回のストライク
       subscribe: 購読する
       suspend: サスペンド
-      suspended: 停止済み
+      suspended: サスペンド済み
       suspension_irreversible: このアカウントのデータは削除され元に戻せなくなります。後日アカウントの凍結を解除することはできますがデータは元に戻せません。
       suspension_reversible_hint_html: アカウントは停止されており、データは%{date}に完全に削除されます。それまではアカウントを元に戻すことができます。今すぐ完全に削除したい場合は以下から行うことができます。
       title: アカウント
@@ -154,14 +154,14 @@ ja:
       unconfirmed_email: 確認待ちのメールアドレス
       undo_sensitized: 閲覧注意から戻す
       undo_silenced: サイレンスから戻す
-      undo_suspension: 停止から戻す
+      undo_suspension: サスペンドから戻す
       unsilenced_msg: "%{username}さんのサイレンス解除に成功しました"
       unsubscribe: 購読の解除
-      unsuspended_msg: "%{username}さんの無効化を解除しました"
+      unsuspended_msg: "%{username}さんのサスペンドを解除しました"
       username: ユーザー名
       view_domain: ドメインの概要を表示
       warn: 警告
-      web: Web
+      web: Web/PWA
       whitelisted: 連合許可済み
     action_logs:
       action_types:
@@ -296,7 +296,7 @@ ja:
       new:
         create: お知らせを作成
         title: お知らせを追加
-      publish: 公開する
+      publish: 公開にする
       published_msg: お知らせを掲載しました
       scheduled_for: "%{time}に予約"
       scheduled_msg: お知らせの掲載を予約しました
@@ -314,16 +314,16 @@ ja:
       created_msg: 絵文字の追加に成功しました！
       delete: 削除
       destroyed_msg: 絵文字の削除に成功しました！
-      disable: 無効化
-      disabled: 無効
+      disable: 無効にする
+      disabled: 無効化中
       disabled_msg: 絵文字を無効化しました
       emoji: 絵文字
-      enable: 有効化
-      enabled: 有効
+      enable: 有効にする
+      enabled: ""
       enabled_msg: 絵文字を有効化しました
       image_hint: "%{size}までのPNGまたはGIF画像を利用できます"
-      list: 表示
-      listed: 表示
+      list: 表示する
+      listed: ""
       new:
         title: 新規カスタム絵文字の追加
       no_emoji_selected: 何も選択されていないため、変更されていません
@@ -332,9 +332,9 @@ ja:
       shortcode: ショートコード
       shortcode_hint: 2文字以上の半角英数字とアンダーバーのみ利用できます
       title: カスタム絵文字
-      uncategorized: 未分類
-      unlist: 非表示
-      unlisted: 非表示
+      uncategorized: !カテゴリなし!
+      unlist: 表示しない
+      unlisted: 非表示中
       update_failed_msg: 絵文字を更新できませんでした
       updated_msg: 絵文字の更新に成功しました！
       upload: アップロード
@@ -345,13 +345,13 @@ ja:
       new_users: 新規ユーザー
       opened_reports: 新規通報
       pending_appeals_html:
-        other: 保留中の抗議 <strong>%{count}</strong>件
+        other: 抗議 <strong>%{count}</strong>件
       pending_reports_html:
-        other: 保留中の通報 <strong>%{count}</strong>件
+        other: 通報 <strong>%{count}</strong>件
       pending_tags_html:
-        other: 保留中のハッシュタグ <strong>%{count}</strong>件
+        other: タグ <strong>%{count}</strong>件
       pending_users_html:
-        other: 保留中のユーザー <strong>%{count}</strong>件
+        other: ユーザー <strong>%{count}</strong>件
       resolved_reports: 解決済みの通報
       software: ソフトウェア
       sources: サインアップソース
@@ -823,13 +823,13 @@ ja:
       statuses:
         allow: 掲載を許可
         allow_account: 投稿者を許可
-        description_html: これらは、このサーバーが知っている、たくさんシェアされ、ふぁぼられている投稿です。新しいユーザーや久しぶりにアクセスするユーザーがフォローする人を探すのに役立ちます。あなたが投稿者を承認し、投稿者が許可するまで、表示されることはありません。また、個別の投稿を許可または拒否することもできます。
+        description_html: これらは、このサーバーが知っている、たくさん反応されている投稿です。新しいユーザーや久しぶりにアクセスするユーザーがフォローする人を探すのに役立ちます。あなたが投稿者を承認し、投稿者が許可するまで、表示されることはありません。また、個別の投稿を許可または拒否することもできます。
         disallow: 掲載を拒否
         disallow_account: 投稿者を拒否
         no_status_selected: 何も選択されていないため、変更されていません
         not_discoverable: 投稿者は発見可能であることに同意していません
         shared_by:
-          other: "%{friendly_count} 回の共有、ふぁぼ"
+          other: "スコア : %{friendly_count}"
         title: トレンド投稿
       tags:
         current_score: 現在のスコア %{score}
@@ -1022,8 +1022,8 @@ ja:
       invalid_signature: 有効なEd25519署名ではありません
   date:
     formats:
-      default: "%Y年%m月%d日"
-      with_month_name: "%Y年%m月%d日"
+      default: "%Y/%m/%d"
+      with_month_name: "%Y/%m/%d/"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}時間"
@@ -1128,9 +1128,9 @@ ja:
   filters:
     contexts:
       account: プロフィール
-      home: ホームタイムライン
+      home: ホームTL
       notifications: 通知
-      public: 公開タイムライン
+      public: 公開TL
       thread: 会話
     edit:
       add_keyword: キーワードを追加
@@ -1214,7 +1214,7 @@ ja:
       '43200': 12時間
       '604800': 1週間
       '86400': 1日
-    expires_in_prompt: 無期限
+    expires_in_prompt: 無期限(非推奨)
     generate: 招待リンクを作成
     invited_by: '次の人に招待されました:'
     max_uses:
@@ -1362,8 +1362,8 @@ ja:
       too_many_options: は%{max}個までです
   preferences:
     other: その他
-    posting_defaults: デフォルトの投稿設定
-    public_timelines: 公開タイムライン
+    posting_defaults: デフォルトの投稿範囲
+    public_timelines: 公開TL
   privacy_policy:
     title: プライバシーポリシー
   reactions:
@@ -1506,13 +1506,13 @@ ja:
     sign_in_to_participate: ログインして会話に参加
     title: '%{name}: "%{quote}"'
     visibilities:
-      direct: DM
-      private: 非公開
-      private_long: フォロワーにのみ表示されます
-      public: 公開
-      public_long: 誰でも見ることができ、公開タイムラインに表示されます
-      unlisted: 未収載
-      unlisted_long: 誰でも見ることができますが、公開タイムラインには表示されません
+      direct: メッセージ
+      private: フォロワー
+      private_long: フォロワーにのみ表示
+      public: 全公開
+      public_long: 全てのTLに表示
+      unlisted: ホーム
+      unlisted_long: ホームTLのみに表示
   statuses_cleanup:
     enabled: 古い投稿を自動的に削除する
     enabled_hint: 設定した期間を過ぎた投稿は、以下の例外に該当しない限り、自動的に削除されます
@@ -1568,8 +1568,8 @@ ja:
     mastodon-light: Mastodon (ライト)
   time:
     formats:
-      default: "%Y年%m月%d日 %H:%M"
-      month: "%Y年 %b"
+      default: "%Y/%m/%d %H:%M"
+      month: "%Y/ %b"
       time: "%H:%M"
   two_factor_authentication:
     add: 追加
