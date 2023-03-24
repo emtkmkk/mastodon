@@ -79,7 +79,7 @@
   "announcement.announcement": "お知らせ",
   "attachments_list.unprocessed": "(未処理)",
   "audio.hide": "音声を閉じる",
-  "autosuggest_hashtag.per_week": "{count} 回 / 週",
+  "autosuggest_hashtag.per_week": "{count} トゥート / 週",
   "boost_modal.combo": "次からは{combo}を押せばスキップできます",
   "bundle_column_error.copy_stacktrace": "エラーレポートをコピー",
   "bundle_column_error.error.body": "要求されたページをレンダリングできませんでした。コードのバグ、またはブラウザの互換性の問題が原因である可能性があります。",
