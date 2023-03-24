@@ -14,7 +14,7 @@
             = fa_icon 'link'
             = media_attachment.file_file_name
 
-    = t('admin.trends.statuses.shared_by', count: status.reblogs_count + status.favourites_count, friendly_count: friendly_number_to_human(status.reblogs_count + status.favourites_count + status.reactions_count))
+    = t('admin.trends.statuses.shared_by', count: status.replies_count +　status.reblogs_count + status.favourites_count + status.reactions_count, friendly_count: friendly_number_to_human(status.replies_count +　status.reblogs_count + status.favourites_count + status.reactions_count))
 
     - if status.account.domain.present?
       •
