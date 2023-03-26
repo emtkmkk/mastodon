@@ -19,6 +19,7 @@ import LanguageDropdown from '../containers/language_dropdown_container';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { length } from 'stringz';
 import { countableText } from '../util/counter';
+import { connect } from 'react-redux';
 import Icon from 'mastodon/components/icon';
 
 const allowedAroundShortCode = '><\u0085\u0020\u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029\u0009\u000a\u000b\u000c\u000d';
@@ -32,7 +33,17 @@ const messages = defineMessages({
   saveChanges: { id: 'compose_form.save_changes', defaultMessage: 'Save changes' },
 });
 
-export default @injectIntl
+const makeMapStateToProps = () => {
+  const mapStateToProps = (state, props) => ({
+    enablePowerMode: state.getIn(['meta', 'enable_power_mode']),
+    colorfulPowerMode: state.getIn(['meta', 'colorful_power_mode'])
+  });
+
+  return mapStateToProps;
+};
+
+export default @connect(makeMapStateToProps)
+@injectIntl
 class ComposeForm extends ImmutablePureComponent {
 
   static contextTypes = {
@@ -142,6 +153,11 @@ class ComposeForm extends ImmutablePureComponent {
   };
 
   componentDidMount () {
+    if (this.props.enablePowerMode) {
+      const POWERMODE = require('activate-power-mode');
+      POWERMODE.colorful = !!this.props.colorfulPowerMode;
+      this.autosuggestTextarea.textarea.addEventListener('input', POWERMODE);
+    }
     this._updateFocusAndSelection({ });
   }
 

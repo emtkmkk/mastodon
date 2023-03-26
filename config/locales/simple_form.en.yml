@@ -217,6 +217,8 @@ en:
         setting_unfollow_modal: Show confirmation dialog before unfollowing someone
         setting_use_blurhash: Show colorful gradients for hidden media
         setting_use_pending_items: Slow mode
+        setting_enable_power_mode: Enable Power-Mode
+        setting_colorful_power_mode: Colorful Power-Mode
         severity: Severity
         sign_in_token_attempt: Security code
         title: Title

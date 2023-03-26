@@ -38,6 +38,8 @@ defaults: &defaults
   trends_as_landing_page: true
   trendable_by_default: true
   crop_images: true
+  enable_power_mode: false
+  colorful_power_mode: false
   notification_emails:
     follow: true
     reblog: false
