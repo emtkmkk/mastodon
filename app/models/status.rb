@@ -291,9 +291,9 @@ class Status < ApplicationRecord
       scope = reactions.group(:status_id, :name, :custom_emoji_id).order(Arel.sql('MIN(created_at) ASC'))
 
       if account.nil?
-        scope.select('name, custom_emoji_id, count(*) as count, false as me')
+        scope.select('status_id, name, custom_emoji_id, count(*) as count, false as me')
       else
-        scope.select("name, custom_emoji_id, count(*) as count, exists(select 1 from reactions r where r.account_id = #{account.id} and r.status_id = reactions.status_id and r.name = reactions.name) as me")
+        scope.select("status_id, name, custom_emoji_id, count(*) as count, exists(select 1 from reactions r where r.account_id = #{account.id} and r.status_id = reactions.status_id and r.name = reactions.name) as me")
       end
     end
 

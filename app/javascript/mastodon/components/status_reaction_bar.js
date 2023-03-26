@@ -10,6 +10,9 @@ import AnimatedNumber from 'mastodon/components/animated_number';
 import TransitionMotion from 'react-motion/lib/TransitionMotion';
 import spring from 'react-motion/lib/spring';
 import { assetHost } from 'mastodon/utils/config';
+import Overlay from 'react-overlays/Overlay';
+import Avatar from './avatar';
+import DisplayName from './display_name';
 
 class Emoji extends React.PureComponent {
 
@@ -41,9 +44,9 @@ class Emoji extends React.PureComponent {
         />
       );
     } else {
-      const filename  = (autoPlayGif || hovered) ? url : static_url;
+      const filename = (autoPlayGif || hovered) ? url : static_url;
       const shortCode = `:${emoji}:`;
-      const title = domain ? `:${emoji}@${domain}:` : `:${emoji}:`
+      const title = domain ? `:${emoji}@${domain}:` : `:${emoji}:`;
 
       return (
         <img
@@ -91,20 +94,66 @@ class Reaction extends ImmutablePureComponent {
 
   handleMouseLeave = () => this.setState({ hovered: false });
 
+  setTargetRef = c => {
+    this.target = c;
+  };
+
+  findTarget = () => {
+    return this.target;
+  };
+
   render () {
     const { reaction, signedIn } = this.props;
+    const { hovered } = this.state;
 
     let shortCode = reaction.get('name');
+    let title;
+
+    const domain = reaction.get('domain');
 
     if (unicodeMapping[shortCode]) {
       shortCode = unicodeMapping[shortCode].shortCode;
+      title = `:${shortCode}:`;
+    } else {
+      title = domain ? `:${shortCode}@${domain}:` : `:${shortCode}:`;
     }
 
     return (
-      <button className={classNames('status-reaction-bar__item', { active: reaction.get('me') })} disabled={reaction.get('domain') || !signedIn} onClick={this.handleClick} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} title={`:${shortCode}:`} style={this.props.style}>
-        <span className='status-reaction-bar__item__emoji'><Emoji hovered={this.state.hovered} emoji={reaction.get('name')} emojiMap={this.props.emojiMap} domain={reaction.get('domain')} url={reaction.get('url')} static_url={reaction.get('static_url')} signedIn={signedIn}/></span>
-        <span className='status-reaction-bar__item__count'><AnimatedNumber value={reaction.get('count')} /></span>
-      </button>
+      <React.Fragment>
+        <span ref={this.setTargetRef} className='status-reaction-bar__wrapper' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+          <button className={classNames('status-reaction-bar__item', { active: reaction.get('me') })} disabled={reaction.get('domain') || !signedIn} onClick={this.handleClick} title={title} style={this.props.style}>
+            <span className='status-reaction-bar__item__emoji'><Emoji hovered={hovered} emoji={reaction.get('name')} emojiMap={this.props.emojiMap} domain={reaction.get('domain')} url={reaction.get('url')} static_url={reaction.get('static_url')} signedIn={signedIn} /></span>
+            <span className='status-reaction-bar__item__count'><AnimatedNumber value={reaction.get('count')} /></span>
+          </button>
+        </span>
+        <Overlay show={hovered} offset={[0, 5]} placement={'top'} flip target={this.findTarget} popperConfig={{ strategy: 'fixed' }}>
+          {({ props, placement }) => (
+            <div {...props} >
+              <div class={`dropdown-animation ${placement}`}>
+                <div class='status-reaction-bar__item__users'>
+                  <div className='status-reaction-bar__item__users__emoji'>
+                    <span><Emoji hovered={this.state.hovered} emoji={reaction.get('name')} emojiMap={this.props.emojiMap} domain={reaction.get('domain')} url={reaction.get('url')} static_url={reaction.get('static_url')} signedIn={signedIn} /></span>
+                    <span className='status-reaction-bar__item__users__emoji__code'>{title}</span>
+                  </div>
+                  <div>
+                    {reaction.get('users').map(user => (
+                      <span className='status-reaction-bar__item__users__item' key={user.get('acct')}>
+                        <Avatar account={user} size={24} />
+                        <DisplayName account={user} />
+                      </span>
+                    ))}
+                    {reaction.get('count') > 11 && (
+                      <span className='status-reaction-bar__item__users__item'>
+                        +{reaction.get('count') - 11}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </Overlay>
+      </React.Fragment>
     );
   }
 
@@ -137,7 +186,7 @@ class StatusReactionBar extends ImmutablePureComponent {
     const visibleReactions = reactions.filter(x => x.get('count') > 0);
 
     const styles = visibleReactions.map(reaction => ({
-      key: reaction.get('name')+'@'+reaction.get('domain'),
+      key: reaction.get('name') + '@' + reaction.get('domain'),
       data: reaction,
       style: { scale: reduceMotion ? 1 : spring(1, { stiffness: 150, damping: 13 }) },
     })).toArray();

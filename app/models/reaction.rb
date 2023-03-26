@@ -38,6 +38,11 @@ class Reaction < ApplicationRecord
   after_create :increment_cache_counters
   after_destroy :decrement_cache_counters
 
+  def users
+    account_ids = Reaction.where(status_id: status_id, name: name, custom_emoji_id: custom_emoji_id).select(:account_id)
+    Account.where(id: account_ids).limit(11)
+  end
+
   private
 
   def set_custom_emoji
