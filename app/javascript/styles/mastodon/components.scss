@@ -7821,26 +7821,27 @@ noscript {
   color: $inverted-text-color;
   background: $ui-secondary-color;
   display: flex;
-  padding: 12px;
+  padding: 8px;
   border-radius: 4px;
   box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
-  z-index: 9999;
   font-size: 13px;
+  flex-direction: column;
 
   &__emoji {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    margin-right: 16px;
-    width: 80px;
+    margin-bottom: 6px;
+    justify-content: center;
 
     .emojione {
-      width: 60px;
-      height: auto;
+      width: 24px !important;
+      height: 24px;
+      object-fit: fill;
+      margin-right: 8px;
     }
 
     &__code {
-      margin-top: 6px;
       word-break: break-all;
     }
   }
@@ -7848,14 +7849,15 @@ noscript {
   &__item {
     display: flex;
     align-items: center;
-    margin-bottom: 4px;
+    margin-top: 4px;
 
     .account__avatar {
       margin-right: 6px;
     }
 
     .display-name__account {
-      display: none;
+      color: #999;
+      font-size: 11px;
     }
   }
 }
