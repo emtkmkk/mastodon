@@ -7826,6 +7826,7 @@ noscript {
   box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
   font-size: 13px;
   flex-direction: column;
+  z-index: 9999;
 
   &__emoji {
     display: flex;
