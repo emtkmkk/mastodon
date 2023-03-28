@@ -34,6 +34,7 @@ class UserSettingsDecorator
     user.settings['aggregate_reblogs']   = aggregate_reblogs_preference if change?('setting_aggregate_reblogs')
     user.settings['enable_power_mode']   = enable_power_mode_preference if change?('setting_enable_power_mode')
     user.settings['colorful_power_mode'] = colorful_power_mode_preference if change?('setting_colorful_power_mode')
+    user.settings['noshake_power_mode']  = noshake_power_mode_preference if change?('setting_noshake_power_mode')
     user.settings['show_application']    = show_application_preference if change?('setting_show_application')
     user.settings['advanced_layout']     = advanced_layout_preference if change?('setting_advanced_layout')
     user.settings['use_blurhash']        = use_blurhash_preference if change?('setting_use_blurhash')
@@ -121,6 +122,10 @@ class UserSettingsDecorator
 
   def colorful_power_mode_preference
     boolean_cast_setting 'setting_colorful_power_mode'
+  end
+
+  def noshake_power_mode_preference
+    boolean_cast_setting 'setting_noshake_power_mode'
   end
 
   def advanced_layout_preference

@@ -50,6 +50,7 @@ class Settings::PreferencesController < Settings::BaseController
       :setting_aggregate_reblogs,
       :setting_enable_power_mode,
       :setting_colorful_power_mode,
+      :setting_noshake_power_mode,
       :setting_show_application,
       :setting_advanced_layout,
       :setting_use_blurhash,

@@ -66,6 +66,7 @@
   .fields-group
     = f.input :setting_enable_power_mode, as: :boolean, wrapper: :with_label
     = f.input :setting_colorful_power_mode, as: :boolean, wrapper: :with_label
+    = f.input :setting_noshake_power_mode, as: :boolean, wrapper: :with_label
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit

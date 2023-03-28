@@ -36,7 +36,8 @@ const messages = defineMessages({
 const makeMapStateToProps = () => {
   const mapStateToProps = (state, props) => ({
     enablePowerMode: state.getIn(['meta', 'enable_power_mode']),
-    colorfulPowerMode: state.getIn(['meta', 'colorful_power_mode'])
+    colorfulPowerMode: state.getIn(['meta', 'colorful_power_mode']),
+    noshakePowerMode: state.getIn(['meta', 'noshake_power_mode'])
   });
 
   return mapStateToProps;
@@ -156,6 +157,7 @@ class ComposeForm extends ImmutablePureComponent {
     if (this.props.enablePowerMode) {
       const POWERMODE = require('activate-power-mode');
       POWERMODE.colorful = !!this.props.colorfulPowerMode;
+      POWERMODE.shake = !this.props.noshakePowerMode;
       this.autosuggestTextarea.textarea.addEventListener('input', POWERMODE);
     }
     this._updateFocusAndSelection({ });

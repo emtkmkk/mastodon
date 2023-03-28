@@ -432,6 +432,10 @@ class User < ApplicationRecord
     settings.colorful_power_mode
   end
 
+  def setting_noshake_power_mode
+    settings.noshake_power_mode
+  end
+
   protected
 
   def send_devise_notification(notification, *args, **kwargs)

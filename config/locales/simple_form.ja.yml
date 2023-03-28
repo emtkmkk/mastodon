@@ -219,6 +219,7 @@ ja:
         setting_use_pending_items: 手動更新モード
         setting_enable_power_mode: トゥートに力を込める
         setting_colorful_power_mode: 飛び散る破片をカラフルに！
+        setting_noshake_power_mode: 画面が揺れない程度に手加減する
         severity: 重大性
         sign_in_token_attempt: セキュリティコード
         title: タイトル
