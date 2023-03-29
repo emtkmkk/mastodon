@@ -288,7 +288,7 @@ class Status < ApplicationRecord
 
   def reactions_hash(account = nil)
     records = begin
-      scope = reactions.group(:status_id, :name, :custom_emoji_id).order(Arel.sql('MIN(created_at) ASC'))
+      scope = reactions.joins("LEFT OUTER JOIN accounts ON reactions.account_id = accounts.id").group(:status_id, :name, :custom_emoji_id).order(Arel.sql('MAX(CASE WHEN domain IS NULL THEN 1 ELSE 0 END) = 1 DESC,COUNT(*) DESC,MIN(reactions.created_at) ASC'))
 
       if account.nil?
         scope.select('status_id, name, custom_emoji_id, count(*) as count, false as me')
