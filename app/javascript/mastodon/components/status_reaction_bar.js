@@ -74,6 +74,7 @@ class Reaction extends ImmutablePureComponent {
     removeReaction: PropTypes.func.isRequired,
     emojiMap: ImmutablePropTypes.map.isRequired,
     style: PropTypes.object,
+    detailed: PropTypes.bool.isRequired,
   };
 
   state = {
@@ -103,13 +104,28 @@ class Reaction extends ImmutablePureComponent {
   };
 
   render () {
-    const { reaction, signedIn } = this.props;
+    const { reaction, signedIn, detailed } = this.props;
     const { hovered } = this.state;
 
     let shortCode = reaction.get('name');
     let title;
+    let iosAllDisabled = false;
 
     const domain = reaction.get('domain');
+
+    const getMobileOS = () => {
+      const ua = navigator.userAgent
+      if (/android/i.test(ua)) {
+        return "Android"
+      }
+      else if ((/iPad|iPhone|iPod/.test(ua)) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)){
+        return "iOS"
+      }
+
+      return "Other"
+    }
+    
+    const os = getMobileOS();
 
     if (unicodeMapping[shortCode]) {
       shortCode = unicodeMapping[shortCode].shortCode;
@@ -118,10 +134,16 @@ class Reaction extends ImmutablePureComponent {
       title = domain ? `:${shortCode}@${domain}:` : `:${shortCode}:`;
     }
 
+    if (!!detailed) {
+        if (os === "iOS"){
+            iosAllDisabled = true;
+        }
+    }
+
     return (
       <React.Fragment>
         <span ref={this.setTargetRef} className='status-reaction-bar__wrapper' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
-          <button className={classNames('status-reaction-bar__item', { active: reaction.get('me') })} disabled={reaction.get('domain') || !signedIn} onClick={this.handleClick} title={title} style={this.props.style}>
+          <button className={classNames('status-reaction-bar__item', { active: reaction.get('me') })} disabled={!!iosAllDisabled || reaction.get('domain') || !signedIn } onClick={this.handleClick} title={title} style={this.props.style}>
             <span className='status-reaction-bar__item__emoji'><Emoji hovered={hovered} emoji={reaction.get('name')} emojiMap={this.props.emojiMap} domain={reaction.get('domain')} url={reaction.get('url')} static_url={reaction.get('static_url')} signedIn={signedIn} /></span>
             <span className='status-reaction-bar__item__count'><AnimatedNumber value={reaction.get('count')} /></span>
           </button>
@@ -168,6 +190,7 @@ class StatusReactionBar extends ImmutablePureComponent {
     addReaction: PropTypes.func.isRequired,
     removeReaction: PropTypes.func.isRequired,
     emojiMap: ImmutablePropTypes.map.isRequired,
+    detailed: PropTypes.bool.isRequired,
   };
 
   willEnter () {
@@ -205,6 +228,7 @@ class StatusReactionBar extends ImmutablePureComponent {
                 addReaction={this.props.addReaction}
                 removeReaction={this.props.removeReaction}
                 emojiMap={this.props.emojiMap}
+                detailed={this.props.detailed}
               />
             ))}
           </div>
