@@ -91,7 +91,7 @@ class Trends::Statuses < Trends::Base
   private
 
   def eligible?(status)
-    status.public_visibility? && status.account.discoverable? && !status.account.silenced? && status.account.local? && status.spoiler_text.blank? && !status.sensitive? && !status.reply? && valid_locale?(status.language)
+    status.public_visibility? && status.account.discoverable? && !status.account.silenced? && status.spoiler_text.blank? && !status.sensitive? && !status.reply? && valid_locale?(status.language)
   end
 
   def calculate_scores(statuses, at_time)
@@ -99,11 +99,19 @@ class Trends::Statuses < Trends::Base
       expected  = 1.0
       observed  = (status.replies_count + status.reblogs_count + status.favourites_count + status.reactions_count).to_f
 
-      score = begin
+      scoreRaw = begin
         if expected > observed || observed < options[:threshold]
           0
         else
           ((observed - expected)**2) / expected
+        end
+      end
+
+      score = begin
+        if status.account.local? then
+          scoreRaw * 1.0
+        else
+          scoreRaw * 0.7
         end
       end
 
