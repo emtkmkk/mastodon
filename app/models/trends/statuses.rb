@@ -5,7 +5,7 @@ class Trends::Statuses < Trends::Base
 
   self.default_options = {
     threshold: 1,
-    review_threshold: 1,
+    review_threshold: 4,
     score_halflife: 4.hours.freeze,
     decay_threshold: 0.2,
   }
@@ -99,8 +99,16 @@ class Trends::Statuses < Trends::Base
       expected  = 1.0
       observed  = (status.replies_count + status.reblogs_count + status.favourites_count + status.reactions_count).to_f
 
+      thresholdValue = begin
+        if status.local?
+          1.0
+        else
+          4.0
+        end
+      end
+
       scoreRaw = begin
-        if expected > observed || observed < options[:threshold]
+        if expected > observed || observed < thresholdValue
           0
         else
           ((observed - expected)**2) / expected
@@ -108,7 +116,7 @@ class Trends::Statuses < Trends::Base
       end
 
       score = begin
-        if status.account.local? then
+        if status.local?
           scoreRaw * 1.0
         else
           scoreRaw * 0.7
