@@ -12,7 +12,7 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
              :conversation
 
   attribute :content
-  attribute :content_map, if: :language?
+  attribute :content_map
   attribute :updated, if: :edited?
 
   has_many :virtual_attachments, key: :attachment
@@ -45,7 +45,7 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
   end
 
   def content_map
-    { object.language => content }
+    language? ? { object.language => content } : { object.language => 'ja' }
   end
 
   def replies
