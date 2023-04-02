@@ -85,7 +85,11 @@ class PublicFeed
   end
 
   def language_scope
-    Status.where(language: account.chosen_languages)
+    if account.chosen_languages.include?('und')
+      Status.where(language: account.chosen_languages).or(Status.where(language: nil))
+    else
+      Status.where(language: account.chosen_languages)
+    end
   end
 
   def account_filters_scope
