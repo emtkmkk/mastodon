@@ -206,7 +206,11 @@ module LanguagesHelper
     zgh: ['Standard Moroccan Tamazight', 'ⵜⴰⵎⴰⵣⵉⵖⵜ'].freeze,
   }.freeze
 
-  SUPPORTED_LOCALES = {}.merge(ISO_639_1).merge(ISO_639_3).freeze
+  UND = {
+    und: ['undefined', 'undefined (Misskey etc...)'].freeze,
+  }.freeze
+
+  SUPPORTED_LOCALES = {}.merge(ISO_639_1).merge(ISO_639_3).merge(UND).freeze
 
   # For ISO-639-1 and ISO-639-3 language codes, we have their official
   # names, but for some translations, we need the names of the
