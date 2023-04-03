@@ -67,6 +67,7 @@ RUN apt-get update && \
         libjemalloc2 \
         libicu67 \
         libidn11 \
+        libwebp6 \
         libyaml-0-2 \
         file \
         ca-certificates \
