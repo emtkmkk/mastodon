@@ -19,11 +19,7 @@ module AccountAvatar
 
   included do
     # Avatar upload
-    if file.content_type == 'image/webp'
-      has_attached_file :avatar, styles: ->(f) { avatar_styles(f) }, convert_options: { all: '+profile "!icc,*" +set modify-date +set create-date' }, processors: [:webp_transcoder]
-    else
-      has_attached_file :avatar, styles: ->(f) { avatar_styles(f) }, convert_options: { all: '+profile "!icc,*" +set modify-date +set create-date' }, processors: [:lazy_thumbnail]
-    end
+    has_attached_file :avatar, styles: ->(f) { avatar_styles(f) }, convert_options: { all: '+profile "!icc,*" +set modify-date +set create-date' }, processors: [:lazy_thumbnail]
     validates_attachment_content_type :avatar, content_type: IMAGE_MIME_TYPES
     validates_attachment_size :avatar, less_than: LIMIT
     remotable_attachment :avatar, LIMIT, suppress_errors: false
@@ -34,6 +30,6 @@ module AccountAvatar
   end
 
   def avatar_static_url
-    avatar_content_type == 'image/gif' || file.content_type == 'image/webp'  ? avatar.url(:static) : avatar_original_url
+    avatar_content_type == 'image/gif' || avatar_content_type == 'image/webp'  ? avatar.url(:static) : avatar_original_url
   end
 end
